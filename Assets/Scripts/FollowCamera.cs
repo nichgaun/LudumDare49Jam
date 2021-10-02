@@ -12,7 +12,7 @@ public class FollowCamera : MonoBehaviour
 
     void Awake()
     {
-        _player = GameObject.FindGameObjectWithTag("Player").GetComponent<Car>();
+        _player = GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<Car>();
         _initialDiff = transform.position - _player.transform.position;
     }
 

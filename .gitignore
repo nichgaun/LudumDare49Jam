@@ -22,6 +22,9 @@
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio Code cache directoy
+.vscode/
+
 # Gradle cache directory
 .gradle/
 
@@ -61,3 +64,5 @@ crashlytics-build.properties
 Builds.zip
 ProjectSettings/EditorBuildSettings.asset
 ProjectSettings/EditorBuildSettings.asset
+
+*/EditorUserSettings.asset
