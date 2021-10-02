@@ -28,5 +28,6 @@ public class TrafficCone : MonoBehaviour
         _ourCollidableSelf.SetVerticalSpeed(relativeSpeed);
         _ourCollidableSelf.SetHorizontalSpeed(relativeSpeed * _flyawayDirection);
         _ourCollidableSelf.SetTumbleDirectionAndIntensity(new Vector3(0, 1, 1), collidingTumbleSpeed);
+        SoundPlayer.Play("hitCone");
     }
 }
