@@ -16,6 +16,8 @@ public class TrafficCone : MonoBehaviour
     ConeState _state = ConeState.IDLE;
     int _flyawayDirection;
 
+    [SerializeField] int coneDamage;// set in editor
+
     void Start() {
         collidingTumbleSpeed = Random.Range(collidingTumbleSpeed * percentageToVary, collidingTumbleSpeed * (1 + percentageToVary));
         collectingVerticalSpeed = Random.Range(collectingVerticalSpeed * percentageToVary, collectingVerticalSpeed * (1 + percentageToVary));
@@ -43,5 +45,10 @@ public class TrafficCone : MonoBehaviour
             _flyawayDirection = 1;
         }
         _state = ConeState.COLLIDING;
+
+        Health health = other.gameObject.GetComponent<Health>();
+        if (health){
+            health.Damage(coneDamage);
+        }
     }
 }
