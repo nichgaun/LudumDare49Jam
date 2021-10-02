@@ -14,6 +14,7 @@ public class SoundPlayer : MonoBehaviour
     private void Awake()
     {
         audioSourceDictionary = new Dictionary<string, AudioSource>();
+        audioClipDictionary = new Dictionary<string, AudioClip>();
 
         if (audioClips.Count != audioClipNames.Count)
         {
