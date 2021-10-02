@@ -9,10 +9,12 @@ public class Roadblock : MonoBehaviour
     [SerializeField] GameObject barricadeRight;
     [SerializeField] GameObject cop;
 
-    void Start()
-    {
 
+    void Start() {
+        barricadeLeft.GetComponent<BarricadeComponent>().setSpinDirection(-1);
+        barricadeRight.GetComponent<BarricadeComponent>().setSpinDirection(1);
     }
+
 
     void Update()
     {
