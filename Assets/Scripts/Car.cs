@@ -20,13 +20,21 @@ public class Car : MonoBehaviour
     [SerializeField] private float _sprintMaxSpeed;
     [SerializeField] private float _sprintMaxAcceleration;
     [SerializeField] private float _decelerationDuringShift;
-    [SerializeField] private float _vSpeed;
+    [SerializeField] private float _strafeSpeed;
+    [SerializeField] private float _strafeStabilization;
     [SerializeField] private float _downshiftDelay;
+    [SerializeField] private float _vImpactMultiplier;
+    [SerializeField] private float _knockAsideThreshold;
+    [SerializeField] private float _knockAsideForce;
     private float _hSpeed;
+    private float _vSpeed;
+    private float _vUncontrolledSpeed;
     private GearShiftState _gearShiftState = GearShiftState.UPSHIFTED;
     public float DefaultSpeed { get { return _defaultSpeed; } }
     private Coroutine _downshiftCoroutine;
     public float VisualAcceleration { get; private set; }
+    public float HSpeed { get { return _hSpeed; } }
+    public float VSpeed { get { return _vSpeed; } }
 
     private void Awake()
     {
@@ -94,6 +102,14 @@ public class Car : MonoBehaviour
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
 
+        // Strafing
+        _vUncontrolledSpeed = Mathf.Lerp(0, _vUncontrolledSpeed, Mathf.Pow(1 - _strafeStabilization, Time.fixedDeltaTime));
+        if (Mathf.Abs(_vUncontrolledSpeed) < 1e-2)
+        {
+            _vUncontrolledSpeed = 0;
+        }
+        _vSpeed = vMove * _strafeSpeed + _vUncontrolledSpeed;
+
         // Additionally decelerate while shifting to add to the lurch effect
         if (_gearShiftState == GearShiftState.DOWNSHIFTING)
         {
@@ -109,7 +125,7 @@ public class Car : MonoBehaviour
         }
 
         // Apply velocity
-        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y, transform.position.z + vMove * _vSpeed * Time.fixedDeltaTime);
+        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y, transform.position.z + _vSpeed * Time.fixedDeltaTime);
     }
 
     private IEnumerator<WaitForSeconds> Downshift()
@@ -119,11 +135,42 @@ public class Car : MonoBehaviour
         _gearShiftState = GearShiftState.DOWNSHIFTED;
     }
 
+    public void AddCollisionForce(Vector3 force)
+    {
+        _hSpeed += force.x;
+        _vUncontrolledSpeed += force.z;
+    }
+
 
     void OnTriggerEnterOrStay(Collider other)
     {
-        Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);
-        transform.position += new Vector3(direction.x * distance, 0, direction.z * distance);
+        var otherCar = other.gameObject.GetComponent<Car>();
+        if (otherCar)
+        {
+            Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);
+            transform.position += new Vector3(direction.x * distance, 0, direction.z * distance);
+            var impactForce = new Vector3(otherCar.HSpeed - HSpeed, 0, _vImpactMultiplier * (otherCar.VSpeed - VSpeed));
+            if (Vector3.Dot(impactForce, direction) > 0)
+            {
+                var zDiff = transform.position.z - other.transform.position.z;
+                AddCollisionForce(DetermineImpactForce(impactForce, zDiff));
+                otherCar.AddCollisionForce(otherCar.DetermineImpactForce(-impactForce, -zDiff));
+            }
+        }
+    }
+
+    public Vector3 DetermineImpactForce(Vector3 baseImpactForce, float xDiff)
+    {
+        if (Mathf.Abs(baseImpactForce.x) > _knockAsideThreshold && Mathf.Abs(baseImpactForce.z) < _knockAsideForce)
+        {
+            var sign = Mathf.Sign(xDiff);
+            if (sign == 0)
+            {
+                sign = Random.Range(0, 2) * 2 - 1;
+            }
+            return new Vector3(baseImpactForce.x, baseImpactForce.y, sign * _knockAsideForce);
+        }
+        return baseImpactForce;
     }
 
     void OnTriggerEnter(Collider other)

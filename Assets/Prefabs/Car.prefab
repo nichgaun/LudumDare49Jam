@@ -56,8 +56,12 @@ MonoBehaviour:
   _sprintMaxSpeed: 70
   _sprintMaxAcceleration: 120
   _decelerationDuringShift: 6
-  _vSpeed: 14
+  _strafeSpeed: 5
+  _strafeStabilization: 0.999
   _downshiftDelay: 0.35
+  _vImpactMultiplier: 0.25
+  _knockAsideThreshold: 0.1
+  _knockAsideForce: 5
 --- !u!23 &6070577121974920535
 MeshRenderer:
   m_ObjectHideFlags: 0

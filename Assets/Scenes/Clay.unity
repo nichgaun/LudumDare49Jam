@@ -174,14 +174,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _brakeDeceleration
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _sprintMaxAcceleration
-      value: 120
-      objectReference: {fileID: 0}
     - target: {fileID: 4964720944969046655, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
       propertyPath: m_Name
       value: PlayerCar
@@ -392,6 +384,10 @@ PrefabInstance:
     - target: {fileID: 6109733682024528103, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: m_Name
       value: Director
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109733682024528103, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}

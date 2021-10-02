@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: _driver
       value: 
       objectReference: {fileID: 8227162034662600781, guid: e24586ade05ca1242a7edba4a629c54b, type: 3}
+    - target: {fileID: 6070577121974920538, guid: 1cddc8ab41050704cb12c46a3896e77e, type: 3}
+      propertyPath: _knockAsideForce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6070577121974920539, guid: 1cddc8ab41050704cb12c46a3896e77e, type: 3}
       propertyPath: m_Name
       value: PlayerCar
