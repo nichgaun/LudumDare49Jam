@@ -26,8 +26,10 @@ public class Car : MonoBehaviour
     [SerializeField] private float _vImpactMultiplier;
     [SerializeField] private float _knockAsideThreshold;
     [SerializeField] private float _knockAsideForce;
+    [SerializeField] private float _gravity;
     private float _hSpeed;
     private float _vSpeed;
+    private float _fallSpeed;
     private float _vUncontrolledSpeed;
     private GearShiftState _gearShiftState = GearShiftState.UPSHIFTED;
     public float DefaultSpeed { get { return _defaultSpeed; } }
@@ -35,6 +37,7 @@ public class Car : MonoBehaviour
     public float VisualAcceleration { get; private set; }
     public float HSpeed { get { return _hSpeed; } }
     public float VSpeed { get { return _vSpeed; } }
+    public float FallSpeed { get { return _fallSpeed; } }
 
     private void Awake()
     {
@@ -101,6 +104,20 @@ public class Car : MonoBehaviour
             VisualAcceleration += acc;
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
+        var groundHeight = transform.localScale.y * 0.5f;
+        if (transform.position.y > groundHeight)
+        {
+            _fallSpeed -= _gravity * Time.fixedDeltaTime;
+        }
+        else
+        {
+            transform.position = new Vector3(transform.position.x, groundHeight, transform.position.z);
+            _fallSpeed = Mathf.Max(_fallSpeed, 0);
+            if (Input.GetKey(KeyCode.Space))
+            {
+                _fallSpeed = 14f;
+            }
+        }
 
         // Strafing
         _vUncontrolledSpeed = Mathf.Lerp(0, _vUncontrolledSpeed, Mathf.Pow(1 - _strafeStabilization, Time.fixedDeltaTime));
@@ -125,7 +142,7 @@ public class Car : MonoBehaviour
         }
 
         // Apply velocity
-        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y, transform.position.z + _vSpeed * Time.fixedDeltaTime);
+        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime);
     }
 
     private IEnumerator<WaitForSeconds> Downshift()

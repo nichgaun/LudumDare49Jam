@@ -62,6 +62,7 @@ MonoBehaviour:
   _vImpactMultiplier: 0.25
   _knockAsideThreshold: 0.1
   _knockAsideForce: 5
+  _gravity: 35
 --- !u!23 &6070577121974920535
 MeshRenderer:
   m_ObjectHideFlags: 0
