@@ -5,8 +5,18 @@ using UnityEngine.UI;
 
 public class Disk : MonoBehaviour
 {
+
+    private enum DiskState
+    {
+        IDLE,
+        COLLECTING,
+    }
+
     [SerializeField] float angularSpeed; // set in editor
+    [SerializeField] float collectingMultiplier; // set in editor
+    [SerializeField] float collectingVerticalSpeed; // set in editor
     Text bananaCountTextField;
+    DiskState _state = DiskState.IDLE;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +28,15 @@ public class Disk : MonoBehaviour
     void Update()
     {
         // spin
-        transform.Rotate(angularSpeed * Time.deltaTime * new Vector3(0, angularSpeed, 0));
+        switch (_state) {
+        case DiskState.IDLE:
+            transform.Rotate(angularSpeed * Time.deltaTime * new Vector3(0, angularSpeed, 0));
+            break;
+        case DiskState.COLLECTING:
+            transform.Rotate(angularSpeed * collectingMultiplier * Time.deltaTime * new Vector3(0, angularSpeed, 0));
+            transform.position += Vector3.up * collectingVerticalSpeed * Time.deltaTime;
+            break;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +45,7 @@ public class Disk : MonoBehaviour
         {
             StaticInformation.myInt += 1;
             bananaCountTextField.text = "Banana Count: " + StaticInformation.myInt;
-            Destroy(gameObject);
+            _state = DiskState.COLLECTING;
         }
     }
 }
