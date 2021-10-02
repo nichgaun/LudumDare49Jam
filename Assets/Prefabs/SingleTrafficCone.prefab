@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5303873301886944760}
   - component: {fileID: 6715390586561287049}
   - component: {fileID: 788535592330537325}
+  - component: {fileID: 5372949358818572486}
   m_Layer: 0
   m_Name: SingleTrafficCone
   m_TagString: Untagged
@@ -112,3 +113,16 @@ MonoBehaviour:
   collectingVerticalSpeed: 10
   collidingTumbleSpeed: 180
   percentageToVary: 0.5
+--- !u!114 &5372949358818572486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457890025164535235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748edcad4dbdece469e330d4468fb66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inertia: 3
