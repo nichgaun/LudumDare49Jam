@@ -10,38 +10,30 @@ public class TrafficCone : MonoBehaviour
         COLLIDING,
     }
 
-    [SerializeField] float collectingVerticalSpeed; // set in editor
     [SerializeField] float collidingTumbleSpeed; // set in editor
     [SerializeField] float percentageToVary; // set in editor
     ConeState _state = ConeState.IDLE;
-    int _flyawayDirection;
+    CollidableObstacle _ourCollidableSelf;
 
     void Start() {
-        collidingTumbleSpeed = Random.Range(collidingTumbleSpeed * percentageToVary, collidingTumbleSpeed * (1 + percentageToVary));
-        collectingVerticalSpeed = Random.Range(collectingVerticalSpeed * percentageToVary, collectingVerticalSpeed * (1 + percentageToVary));
+        _ourCollidableSelf = GetComponent<CollidableObstacle>();
     }
 
-    void Update()
-    {
-        // spin
-        switch (_state) {
-        case ConeState.IDLE:
-            break;
-        case ConeState.COLLIDING:
-            transform.Rotate(Time.deltaTime * new Vector3(collidingTumbleSpeed, collidingTumbleSpeed, collidingTumbleSpeed));
-            transform.position += (Vector3.up + Vector3.back * 2 * _flyawayDirection) * collectingVerticalSpeed * Time.deltaTime;
-            break;
-        }
-    }
+    void Update() {}
 
     private void OnTriggerEnter(Collider other)
     {
         // determine relative positioning
+        int _flyawayDirection;
         if (other.gameObject.transform.position.z < gameObject.transform.position.z) {
             _flyawayDirection = -1;
         } else {
             _flyawayDirection = 1;
         }
+        var relativeSpeed = other.GetComponent<Car>().HSpeed;
         _state = ConeState.COLLIDING;
+        _ourCollidableSelf.SetVerticalSpeed(relativeSpeed);
+        _ourCollidableSelf.SetHorizontalSpeed(relativeSpeed * _flyawayDirection);
+        _ourCollidableSelf.SetTumbleDirectionAndIntensity(new Vector3(1, 1, 1), collidingTumbleSpeed);
     }
 }
