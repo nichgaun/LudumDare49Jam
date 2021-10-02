@@ -109,3 +109,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angularSpeed: 15
+  collectingMultiplier: 5
+  collectingVerticalSpeed: 10
