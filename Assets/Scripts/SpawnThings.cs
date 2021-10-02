@@ -17,7 +17,7 @@ public class SpawnThings : MonoBehaviour
     private void Start()
     {
         spawnTimer = 0;
-        if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag("Player");
+        if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag(TagName.Player);
         offsetFromFollowed = transform.position - followedObject.transform.position;
     }
 
