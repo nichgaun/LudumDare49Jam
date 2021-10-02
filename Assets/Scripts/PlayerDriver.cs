@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerDriver : Driver
 {
-    public override void ControlCar(out int hMove, out int vMove)
+    public override void ControlCar(out int hMove, out int vMove, out bool sprint)
     {
         hMove = 0;
         vMove = 0;
@@ -22,5 +22,6 @@ public class PlayerDriver : Driver
         {
             vMove += 1;
         }
+        sprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
 }
