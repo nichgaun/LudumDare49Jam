@@ -26,6 +26,7 @@ public class Car : MonoBehaviour
     private GearShiftState _gearShiftState = GearShiftState.UPSHIFTED;
     public float DefaultSpeed { get { return _defaultSpeed; } }
     private Coroutine _downshiftCoroutine;
+    public float VisualAcceleration { get; private set; }
 
     private void Awake()
     {
@@ -54,8 +55,10 @@ public class Car : MonoBehaviour
             _gearShiftState = GearShiftState.UPSHIFTED;
         }
 
-        // Alter speed
-        if (hMove == 0)
+        // Apply acceleration
+        VisualAcceleration = 0;
+        var cruising = hMove == 0;
+        if (cruising)
         {
             // Tend toward cruising speed if no input given
             if (_hSpeed < _defaultSpeed)
@@ -72,25 +75,40 @@ public class Car : MonoBehaviour
             // Accelerate
             if (_gearShiftState == GearShiftState.UPSHIFTED)
             {
-                _hSpeed = Mathf.Min(_hSpeed + _walkAcceleration * Time.fixedDeltaTime, _walkMaxSpeed);
+                var acc = _walkAcceleration;
+                VisualAcceleration += acc;
+                _hSpeed = Mathf.Min(_hSpeed + acc * Time.fixedDeltaTime, _walkMaxSpeed);
             }
             else if (_gearShiftState == GearShiftState.DOWNSHIFTED)
             {
-                _hSpeed = Mathf.Min(_hSpeed + Mathf.Max(_defaultSpeed, _hSpeed) / _sprintMaxSpeed * _sprintMaxAcceleration * Time.fixedDeltaTime, _sprintMaxSpeed);
+                var acc = Mathf.Max(_defaultSpeed, _hSpeed) / _sprintMaxSpeed * _sprintMaxAcceleration;
+                VisualAcceleration += acc;
+                _hSpeed = Mathf.Min(_hSpeed + acc * Time.fixedDeltaTime, _sprintMaxSpeed);
             }
         }
         else if (hMove == -1)
         {
             // Brake
-            _hSpeed = Mathf.Max(_hSpeed - _brakeDeceleration * Time.fixedDeltaTime, _brakeMinSpeed);
+            var acc = -_brakeDeceleration;
+            VisualAcceleration += acc;
+            _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
 
         // Additionally decelerate while shifting to add to the lurch effect
         if (_gearShiftState == GearShiftState.DOWNSHIFTING)
         {
-            _hSpeed = Mathf.Max(_hSpeed - _decelerationDuringShift * Time.fixedDeltaTime, _brakeMinSpeed);
+            var acc = -_decelerationDuringShift;
+            VisualAcceleration += acc;
+            _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
 
+        // Don't show acceleration when not providing any input to avoid shaking near default speed
+        if (cruising)
+        {
+            VisualAcceleration = 0;
+        }
+
+        // Apply velocity
         transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y, transform.position.z + vMove * _vSpeed * Time.fixedDeltaTime);
     }
 
