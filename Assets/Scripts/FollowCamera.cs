@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowCamera : MonoBehaviour
@@ -12,8 +13,14 @@ public class FollowCamera : MonoBehaviour
         _initialDiff = transform.position - _player.transform.position;
     }
 
-    void LateUpdate()
+    private void FixedUpdate()
     {
+        StartCoroutine(LateFixedUpdate());
+    }
+
+    private IEnumerator<WaitForFixedUpdate> LateFixedUpdate()
+    {
+        yield return new WaitForFixedUpdate();
         transform.position = Vector3.Lerp(_player.transform.position + _initialDiff, transform.position + _player.DefaultSpeed * Time.deltaTime * Vector3.right, Mathf.Pow(1 - _lerpAmount, Time.deltaTime));
         transform.LookAt(_player.transform.position, Vector3.up);
     }
