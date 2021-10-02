@@ -19,11 +19,6 @@ public class TrafficCone : MonoBehaviour
     void Start() {
         collidingTumbleSpeed = Random.Range(collidingTumbleSpeed * percentageToVary, collidingTumbleSpeed * (1 + percentageToVary));
         collectingVerticalSpeed = Random.Range(collectingVerticalSpeed * percentageToVary, collectingVerticalSpeed * (1 + percentageToVary));
-        if (Random.Range(0, 2) == 0) {
-            _flyawayDirection = 1;
-        } else {
-            _flyawayDirection = -1;
-        }
     }
 
     void Update()
@@ -41,6 +36,12 @@ public class TrafficCone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            _state = ConeState.COLLIDING;
+        // determine relative positioning
+        if (other.gameObject.transform.position.z < gameObject.transform.position.z) {
+            _flyawayDirection = -1;
+        } else {
+            _flyawayDirection = 1;
+        }
+        _state = ConeState.COLLIDING;
     }
 }
