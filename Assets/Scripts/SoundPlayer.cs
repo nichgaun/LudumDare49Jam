@@ -20,7 +20,7 @@ public class SoundPlayer : MonoBehaviour
         }
 
         for (int i = 0; i < audioClips.Count; i++) {
-            AudioSource audioSource = new AudioSource();
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
             audioSource.clip = audioClips[i];
             audioSource.volume = (i < audioClipVolumes.Count) ? audioClipVolumes[i] : 1f;
 
