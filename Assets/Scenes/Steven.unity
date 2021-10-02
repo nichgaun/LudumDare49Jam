@@ -354,7 +354,7 @@ GameObject:
   - component: {fileID: 1112873293}
   m_Layer: 5
   m_Name: Text
-  m_TagString: Untagged
+  m_TagString: UIBananaCount
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -601,6 +601,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lerpAmount: 0.9
+  _rollFactor: 0
+  _rollLerpAmount: 0
 --- !u!1 &1725445139
 GameObject:
   m_ObjectHideFlags: 0
