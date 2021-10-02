@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 5303873301886944760}
   - component: {fileID: 6715390586561287049}
   - component: {fileID: 788535592330537325}
-  - component: {fileID: 8030260683488627105}
+  - component: {fileID: 5372949358818572486}
+  - component: {fileID: 8458311147948286714}
   m_Layer: 0
   m_Name: SingleTrafficCone
   m_TagString: Untagged
@@ -110,11 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8193550385f1e5469bfb14a288ea93f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectingVerticalSpeed: 10
+  collidingVerticalSpeed: 15
+  collidingHorizontalSpeed: 10
   collidingTumbleSpeed: 180
   percentageToVary: 0.5
-  coneDamage: 0
---- !u!114 &8030260683488627105
+--- !u!114 &5372949358818572486
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,7 +124,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5457890025164535235}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 376f175a276d2174f84926ebdc5b406f, type: 3}
+  m_Script: {fileID: 11500000, guid: 748edcad4dbdece469e330d4468fb66e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  _inertia: 3
+--- !u!114 &8458311147948286714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457890025164535235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cf71e8f62d0cf409bd8bea5c327b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
