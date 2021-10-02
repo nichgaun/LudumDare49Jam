@@ -4,6 +4,8 @@ Shader "Custom/Horizon"
   {
     _MainTex("Texture", 2D) = "white" {}
     _TexSize("Texture Size", Float) = 512
+    _XSign("X sign", Float) = -1
+    _ZSign("Z sign", Float) = 1
   }
   SubShader
   {
@@ -35,6 +37,8 @@ Shader "Custom/Horizon"
 
       sampler2D _MainTex;
       float _TexSize;
+      float _XSign;
+      float _ZSign;
       float4 _MainTex_ST;
 
       v2f vert(appdata v)
@@ -49,9 +53,9 @@ Shader "Custom/Horizon"
 
       fixed4 frag(v2f i) : SV_Target
       {
-        if (i.viewT.y > 0 && i.worldPos.y > 0) {
+        if (i.viewT.y > 0) {
           fixed dist = i.worldPos.y / i.viewT.y;
-          fixed2 uv = fixed2(mod((i.worldPos.x - dist * i.viewT.x) / _TexSize, 1), mod((i.worldPos.z + dist * i.viewT.z) / _TexSize, 1));
+          fixed2 uv = fixed2(mod((i.worldPos.x + _XSign * dist * i.viewT.x) / _TexSize, 1), mod((i.worldPos.z - _ZSign * dist * i.viewT.z) / _TexSize, 1));
           fixed4 col = tex2D(_MainTex, uv);
           return col;
         }
