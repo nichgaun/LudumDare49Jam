@@ -8,11 +8,12 @@ public class SoundPlayer : MonoBehaviour
     [SerializeField] List<string> audioClipNames;
     [SerializeField] List<float> audioClipVolumes;
 
-    static Dictionary<string, AudioSource> audioDictionary;
+    static Dictionary<string, AudioSource> audioSourceDictionary;
+    static Dictionary<string, AudioClip> audioClipDictionary;
 
     private void Awake()
     {
-        audioDictionary = new Dictionary<string, AudioSource>();
+        audioSourceDictionary = new Dictionary<string, AudioSource>();
 
         if (audioClips.Count != audioClipNames.Count)
         {
@@ -24,12 +25,20 @@ public class SoundPlayer : MonoBehaviour
             audioSource.clip = audioClips[i];
             audioSource.volume = (i < audioClipVolumes.Count) ? audioClipVolumes[i] : 1f;
 
-            audioDictionary.Add(audioClipNames[i], audioSource);
+            audioClipDictionary.Add(audioClipNames[i], audioClips[i]);
+            audioSourceDictionary.Add(audioClipNames[i], audioSource);
         }
     }
 
-    public static void Play(string audioClipName)
+    public static void Play(string audioClipName, bool asOneShot = true)
     {
-        audioDictionary[audioClipName].Play();
+        if (asOneShot)
+        {
+            audioSourceDictionary[audioClipName].PlayOneShot(audioClipDictionary[audioClipName]);
+        }
+        else
+        {
+            audioSourceDictionary[audioClipName].Play();
+        }
     }
 }
