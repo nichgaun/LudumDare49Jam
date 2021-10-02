@@ -5,7 +5,6 @@ using UnityEngine;
 public class SpawnThings : MonoBehaviour
 {
     [SerializeField] List<GameObject> thingsToSpawn; //set in editor
-    [SerializeField] GameObject cdToSpawn; // set in editor
     [SerializeField] float spawnInterval; //set in editor
     [SerializeField] Vector3 spawnLineStart; //set in editor
     [SerializeField] Vector3 spawnLineEnd; //set in editor
