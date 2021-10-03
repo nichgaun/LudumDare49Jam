@@ -30,6 +30,9 @@ public class Car : MonoBehaviour
     [SerializeField] private GameObject _modelObject;
     [SerializeField] private float _flipSpeed;
     [SerializeField] private float _jumpSpeed;
+    [SerializeField] private float _bounceThreshold;
+    [SerializeField] private float _bounceProportion;
+    [SerializeField] private float _bouncePitchSpeed;
     private float _hSpeed;
     private float _vSpeed;
     private float _fallSpeed;
@@ -124,13 +127,21 @@ public class Car : MonoBehaviour
         else
         {
             transform.position = new Vector3(transform.position.x, groundHeight, transform.position.z);
-            _fallSpeed = Mathf.Max(_fallSpeed, 0);
+            if (_fallSpeed < -_bounceThreshold)
+            {
+                _fallSpeed = _fallSpeed * -_bounceProportion;
+                _pitchSpeed = Random.Range(-_bouncePitchSpeed, _bouncePitchSpeed);
+            }
+            else
+            {
+                _fallSpeed = Mathf.Max(_fallSpeed, 0);
+                _pitchSpeed = 0;
+            }
             if (Input.GetKey(KeyCode.Space))
             {
                 _fallSpeed = _jumpSpeed;
             }
             _pitch = 0;
-            _pitchSpeed = 0;
         }
 
         // Strafing
