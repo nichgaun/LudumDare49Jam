@@ -8,10 +8,8 @@ public class CheckHeal : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HEAL");
         Health health = other.gameObject.GetComponent<Health>();
         if (health){
-            Debug.Log("Healing");
             health.Heal(healing);
         }
     }
