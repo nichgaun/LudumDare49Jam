@@ -14,7 +14,7 @@ public class RoadSpawner : MonoBehaviour
     void Awake()
     {
         _player = GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<Car>();
-        _initialPosition = _player.transform.position + Vector3.down * _player.transform.localScale.y / 2;
+        _initialPosition = _player.transform.position;
         _hLast = _initialPosition.x - _lead;
         _quaternion = Quaternion.Euler(90, 0, 0);
     }
