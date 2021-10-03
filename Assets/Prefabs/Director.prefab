@@ -48,7 +48,10 @@ MonoBehaviour:
   - {fileID: 4106432698967655635, guid: 1e1c56b8a1ec6424aa4b91a4def9ddea, type: 3}
   - {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
   spawnInterval: 1
-  spawnLineStart: {x: 0, y: 0, z: -5}
-  spawnLineEnd: {x: 0, y: 0, z: 5}
+  spawnLocations:
+  - {x: 0, y: 0, z: -3}
+  - {x: 0, y: 0, z: -1}
+  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 3}
   followedObject: {fileID: 0}
   offsetFromFollowed: {x: 0, y: 0, z: 0}

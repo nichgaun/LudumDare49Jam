@@ -6,25 +6,34 @@ public class SpawnThings : MonoBehaviour
 {
     [SerializeField] List<GameObject> thingsToSpawn; //set in editor
     [SerializeField] float spawnInterval; //set in editor
-    [SerializeField] Vector3 spawnLineStart; //set in editor
-    [SerializeField] Vector3 spawnLineEnd; //set in editor
+    [SerializeField] List<Vector3> spawnLocations;
 
     [SerializeField] GameObject followedObject; //set via tag to player
     [SerializeField] Vector3 offsetFromFollowed; //set in editor
+
+    float fixedZPos; //set in Start
 
     float spawnTimer;
 
     private void Start()
     {
         spawnTimer = 0;
+
         if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag(TagName.Player);
+        
         offsetFromFollowed = transform.position - followedObject.transform.position;
+
+        fixedZPos = transform.position.z;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = followedObject.transform.position + offsetFromFollowed;
+
+        Vector3 tmp = transform.position;
+        tmp.z = fixedZPos;
+        transform.position = tmp;
 
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
@@ -37,7 +46,7 @@ public class SpawnThings : MonoBehaviour
     private void SpawnNew()
     {
         //randomly pick a point along the line given as the spawn location
-        Vector3 location = Vector3.Lerp(spawnLineStart, spawnLineEnd, Random.Range(0f, 1f));
+        Vector3 location = spawnLocations[Random.Range(0, spawnLocations.Count)];
         location += transform.position;
 
         if (thingsToSpawn.Count != 0)
