@@ -56,7 +56,7 @@ MonoBehaviour:
   _sprintMaxSpeed: 70
   _sprintMaxAcceleration: 120
   _decelerationDuringShift: 6
-  _strafeSpeed: 10
+  _strafeSpeed: 20
   _strafeStabilization: 0.999
   _downshiftDelay: 0.35
   _vImpactMultiplier: 0.25
@@ -69,6 +69,8 @@ MonoBehaviour:
   _bounceThreshold: 5
   _bounceProportion: 0.4
   _bouncePitchSpeed: 60
+  _breakMagnitude: 2200
+  _breakable: 0
   _yawLerpAmount: 0.1
 --- !u!23 &6070577121974920535
 MeshRenderer:

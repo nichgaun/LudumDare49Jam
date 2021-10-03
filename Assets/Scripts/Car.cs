@@ -33,6 +33,8 @@ public class Car : MonoBehaviour
     [SerializeField] private float _bounceThreshold;
     [SerializeField] private float _bounceProportion;
     [SerializeField] private float _bouncePitchSpeed;
+    [SerializeField] private float _breakMagnitude;
+    [SerializeField] private bool _breakable;
     private float _hSpeed;
     private float _vSpeed;
     private float _fallSpeed;
@@ -124,6 +126,7 @@ public class Car : MonoBehaviour
             _fallSpeed -= _gravity * Time.fixedDeltaTime;
             if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             {
+                Emit();
                 _pitchSpeed = -_flipSpeed;
             }
         }
@@ -200,6 +203,15 @@ public class Car : MonoBehaviour
         _stillRamping = false;
     }
 
+    private void Emit()
+    {
+        var ps = GameObject.FindGameObjectWithTag(TagName.ParticleSystem).GetComponent<ParticleSystem>();
+        var emitParams = new ParticleSystem.EmitParams();
+        emitParams.position = transform.position;
+        emitParams.applyShapeToPosition = true;
+        ps.Emit(emitParams, 20);
+    }
+
     private IEnumerator<WaitForSeconds> Downshift()
     {
         _gearShiftState = GearShiftState.DOWNSHIFTING;
@@ -211,6 +223,11 @@ public class Car : MonoBehaviour
     {
         _hSpeed += force.x;
         _vUncontrolledSpeed += force.z;
+        if (_breakable && force.sqrMagnitude > _breakMagnitude)
+        {
+            Emit();
+            Destroy(gameObject);
+        }
     }
 
 
