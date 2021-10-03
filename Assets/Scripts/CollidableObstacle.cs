@@ -30,7 +30,7 @@ public class CollidableObstacle : MonoBehaviour
         _VSpeed = 0;
         _HSpeed = 0;
         _tumbleAngularSpeed = 0;
-        _groundHeight = transform.localScale.y * 0.5f; // don't know why *0.5f, ask Clay
+        _groundHeight = 0;
     }
 
     void Update() {

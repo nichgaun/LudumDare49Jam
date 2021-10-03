@@ -120,7 +120,7 @@ public class Car : MonoBehaviour
             VisualAcceleration += acc;
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
-        var groundHeight = _rampY + transform.localScale.y * 0.5f;
+        var groundHeight = _rampY;
         if (transform.position.y > groundHeight)
         {
             _fallSpeed -= _gravity * Time.fixedDeltaTime;

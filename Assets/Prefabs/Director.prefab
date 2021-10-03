@@ -44,10 +44,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thingsToSpawn:
-  - {fileID: 4106432698967655635, guid: 52c6114ffdd599f46baca28c79c7404c, type: 3}
+  - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
   - {fileID: 4106432698967655635, guid: 1e1c56b8a1ec6424aa4b91a4def9ddea, type: 3}
   - {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
   - {fileID: 1370845632242064967, guid: fe5151bed53f51c45977be31b98fa58e, type: 3}
+  - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
+  - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
+  - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
+  - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
   spawnInterval: 1
   spawnLocations:
   - {x: 0, y: 0, z: -3}
