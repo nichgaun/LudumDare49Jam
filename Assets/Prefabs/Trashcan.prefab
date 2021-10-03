@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1434604441908705294}
+  - component: {fileID: 2362244561847419087}
+  - component: {fileID: 8234299105418788763}
+  - component: {fileID: 5944932067346018718}
   m_Layer: 0
   m_Name: Trascan
   m_TagString: Untagged
@@ -24,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7260038498879712304}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.1407523, y: 0, z: -0.43276787}
+  m_LocalPosition: {x: 0, y: 0, z: -0.43276787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6304518072846254075}
@@ -32,6 +35,46 @@ Transform:
   m_Father: {fileID: 6406568931071906857}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2362244561847419087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260038498879712304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 748edcad4dbdece469e330d4468fb66e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inertia: 1
+--- !u!114 &8234299105418788763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260038498879712304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4738bffce2b5a80489940694fb026c41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collidingTumbleSpeed: 180
+--- !u!136 &5944932067346018718
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260038498879712304}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.45
+  m_Height: 1.06
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.51, z: 0}
 --- !u!1 &8955414892688085042
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5702c3cbe04ab204fbf40e8f9fd1fae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.148
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5702c3cbe04ab204fbf40e8f9fd1fae1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -162,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5857e2acf0245e4a9b71ef4ac9489d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.145
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c5857e2acf0245e4a9b71ef4ac9489d5, type: 3}
       propertyPath: m_LocalPosition.y
