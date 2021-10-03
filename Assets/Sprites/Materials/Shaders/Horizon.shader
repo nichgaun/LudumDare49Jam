@@ -70,9 +70,9 @@ Shader "Custom/Horizon"
         fixed4 col;
         if (i.viewT.y > 0) {
           fixed dist = i.worldPos.y / i.viewT.y;
-          fixed2 uv = fixed2((i.worldPos.x + _XSign * dist * i.viewT.x) / _TexSize, (i.worldPos.z - _ZSign * dist * i.viewT.z) / _TexSize + 0.5f);
+          fixed2 uv = fixed2((i.worldPos.x + _XSign * dist * i.viewT.x) / _TexSize + 0.5f, (i.worldPos.z - _ZSign * dist * i.viewT.z) / _TexSize + 0.5f);
           if (uv.y > 0 && uv.y < 1) {
-            col = tex2D(_RoadTex, uv);
+            col = tex2D(_RoadTex, uv) * 1.2f;
           } else {
             col = tex2D(_GrassTex, uv);
           }

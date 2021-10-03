@@ -83,7 +83,7 @@ Material:
     - _SrcBlend: 1
     - _SunGlowSize: 38.58
     - _SunSize: 4
-    - _TexSize: 12
+    - _TexSize: 10
     - _UVSec: 0
     - _XSign: -1
     - _ZSign: 1
