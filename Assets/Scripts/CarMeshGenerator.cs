@@ -24,12 +24,12 @@ public class CarMeshGenerator : MonoBehaviour
 
     Dictionary<Parameter, (float, float)> ranges = new Dictionary<Parameter, (float, float)> {
         {Parameter.width, (2f, 3f)},
-        {Parameter.height, (0.2f, 0.5f)}, // factor --> width
+        {Parameter.height, (0.15f, 0.4f)}, // factor --> width
         {Parameter.depth, (0.5f, 0.7f)}, // factor --> width
         {Parameter.cabinHeight, (0.2f, 0.5f)}, // factor --> width
         {Parameter.inset, (0.0f, 0.2f)},
         {Parameter.trunk, (0.0f, 0.5f)}, // factor --> width
-        {Parameter.hood, (0.0f, 0.25f)}, // factor --> width
+        {Parameter.hood, (0.0f, 0.5f)}, // factor --> width
         {Parameter.backWindow, (0.0f, 0.1f)}, // factor --> width
         {Parameter.frontWindow, (0.1f, 0.2f)}, // factor --> width
         {Parameter.tireSize, (1f, 1.5f)}, // factor --> width
@@ -142,7 +142,7 @@ public class CarMeshGenerator : MonoBehaviour
         Color.white
     };
 
-    public GameObject GenerateCar () {
+    public void GenerateCar () {
         GameObject car = new GameObject("Car");
         MeshRenderer meshRenderer = car.AddComponent<MeshRenderer>();
         Material body = new Material(Shader.Find("Standard")), window = new Material(Shader.Find("Standard"));
@@ -156,10 +156,15 @@ public class CarMeshGenerator : MonoBehaviour
         cabinHeight = width * GetRandomParameter(Parameter.cabinHeight);
         inset = GetRandomParameter(Parameter.inset);
         trunk = width * GetRandomParameter(Parameter.trunk);
-        hood = width * GetRandomParameter(Parameter.hood);
+        hood = width * (GetRandomParameter(Parameter.hood));
         backWindow = width * GetRandomParameter(Parameter.backWindow);
         frontWindow = width * GetRandomParameter(Parameter.frontWindow);
         tireSize = width * GetRandomParameter(Parameter.tireSize);
+
+        if (trunk > hood)
+            hood /= 3f;
+        else
+            trunk /= 3f;
 
 
         MeshFilter meshFilter = car.AddComponent<MeshFilter>();
@@ -204,28 +209,35 @@ public class CarMeshGenerator : MonoBehaviour
             w.transform.parent = car.transform;
             w.transform.localScale = new Vector3(tireSize, tireSize, tireSize);
 
-            w.transform.position = new Vector3(width/4+(width/2*j), 0, depth-0.1f-((depth-0.2f)*k));
+            w.transform.localPosition =  new Vector3(width/4+(width/2*j), 0, depth-0.1f-((depth-0.2f)*k));
             w.transform.rotation = new Quaternion(0, 180*(-k), 0, 0);
         }
 
-        return car;
+        car.transform.parent = gameObject.transform;
+        // var v = car.transform.position;
+        // v.y = tireSize/10;
+        car.transform.localPosition = new Vector3 (0f, tireSize/10, 0f);
+
+        // return car;
     }
 
     public void Start () {
-       
+       GenerateCar();
     }
 
-    GameObject car = null;
+    // GameObject car = null;
     [SerializeField] GameObject wheel;
 
-    public void Update () {
-        if (Input.GetKey("space")) {
-            if (car != null) {
-                Destroy(car);
-            }
+    public void Update () { 
 
-            car = GenerateCar();
-        }
     }
+    //     if (Input.GetKey("space")) {
+    //         if (car != null) {
+    //             Destroy(car);
+    //         }
+
+    //         car = GenerateCar();
+    //     }
+    // }
 }
 
