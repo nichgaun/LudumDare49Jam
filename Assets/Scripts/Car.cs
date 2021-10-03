@@ -28,6 +28,8 @@ public class Car : MonoBehaviour
     [SerializeField] private float _knockAsideForce;
     [SerializeField] private float _gravity;
     [SerializeField] private GameObject _modelObject;
+    [SerializeField] private float _flipSpeed;
+    [SerializeField] private float _jumpSpeed;
     private float _hSpeed;
     private float _vSpeed;
     private float _fallSpeed;
@@ -114,8 +116,7 @@ public class Car : MonoBehaviour
             _fallSpeed -= _gravity * Time.fixedDeltaTime;
             if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
             {
-                _fallSpeed = 14f;
-                _pitchSpeed = 90f;
+                _pitchSpeed = -_flipSpeed;
             }
         }
         else
@@ -124,7 +125,7 @@ public class Car : MonoBehaviour
             _fallSpeed = Mathf.Max(_fallSpeed, 0);
             if (Input.GetKey(KeyCode.Space))
             {
-                _fallSpeed = 14f;
+                _fallSpeed = _jumpSpeed;
             }
             _pitch = 0;
             _pitchSpeed = 0;
@@ -157,7 +158,7 @@ public class Car : MonoBehaviour
         _pitch += _pitchSpeed * Time.fixedDeltaTime;
         if (_modelObject)
         {
-            _modelObject.transform.rotation.SetEulerAngles(_pitch, 90, 0);
+            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90, 0);
         }
     }
 

@@ -469,10 +469,6 @@ PrefabInstance:
       propertyPath: _bronco
       value: 
       objectReference: {fileID: 351467679}
-    - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _modelObject
-      value: 
-      objectReference: {fileID: 351467679}
     - target: {fileID: 4964720944969046655, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
       propertyPath: m_Name
       value: PlayerCar
