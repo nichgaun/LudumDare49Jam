@@ -402,6 +402,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoadSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 1837233155476101318, guid: 7ce9112af029ea746ad42cee1d3c318c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1837233155476101319, guid: 7ce9112af029ea746ad42cee1d3c318c, type: 3}
       propertyPath: _lead
       value: 140
