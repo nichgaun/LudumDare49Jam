@@ -17,6 +17,12 @@ public class TrafficCone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var impactingCar = other.GetComponent<Car>();
+        if (!impactingCar)
+        {
+            return;
+        }
+
         // determine relative positioning
         int _flyawayDirection;
         if (other.gameObject.transform.position.z < gameObject.transform.position.z) {
@@ -24,7 +30,7 @@ public class TrafficCone : MonoBehaviour
         } else {
             _flyawayDirection = 1;
         }
-        var relativeSpeed = other.GetComponent<Car>().HSpeed;
+        var relativeSpeed = impactingCar.HSpeed;
         _ourCollidableSelf.SetVerticalSpeed(relativeSpeed);
         _ourCollidableSelf.SetHorizontalSpeed(relativeSpeed * _flyawayDirection);
         _ourCollidableSelf.SetTumbleDirectionAndIntensity(new Vector3(0, 1, 1), collidingTumbleSpeed);

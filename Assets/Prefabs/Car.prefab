@@ -65,6 +65,9 @@ MonoBehaviour:
   _gravity: 35
   _modelObject: {fileID: 0}
   _flipSpeed: 360
+  _jumpSpeed: 0
+  _turnYawFactor: 1
+  _yawLerpAmount: 0.1
 --- !u!23 &6070577121974920535
 MeshRenderer:
   m_ObjectHideFlags: 0

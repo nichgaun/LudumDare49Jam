@@ -43,6 +43,8 @@ public class Car : MonoBehaviour
     public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
     private float _pitch;
     private float _pitchSpeed;
+    private float _yaw;
+    [SerializeField] private float _yawLerpAmount;
 
     private void Awake()
     {
@@ -158,7 +160,8 @@ public class Car : MonoBehaviour
         _pitch += _pitchSpeed * Time.fixedDeltaTime;
         if (_modelObject)
         {
-            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90, 0);
+            _yaw = Mathf.Lerp(_yaw, Mathf.Rad2Deg * (float)Mathf.Atan2(-_vSpeed, _hSpeed), _yawLerpAmount);
+            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 + _yaw, 0);
         }
     }
 
