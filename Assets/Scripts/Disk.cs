@@ -45,6 +45,7 @@ public class Disk : MonoBehaviour
         {
             StaticInformation.myInt += 1;
             bananaCountTextField.text = "Banana Count: " + StaticInformation.myInt;
+            SoundPlayer.Play("cdblip");
             _state = DiskState.COLLECTING;
         }
     }
