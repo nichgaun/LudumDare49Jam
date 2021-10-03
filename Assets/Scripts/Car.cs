@@ -162,6 +162,7 @@ public class Car : MonoBehaviour
     void OnTriggerEnterOrStay(Collider other)
     {
         var otherCar = other.gameObject.GetComponent<Car>();
+        var collidableObject = other.gameObject.GetComponent<CollidableObstacle>();
         if (otherCar)
         {
             Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);
@@ -173,6 +174,11 @@ public class Car : MonoBehaviour
                 AddCollisionForce(DetermineImpactForce(impactForce, zDiff));
                 otherCar.AddCollisionForce(otherCar.DetermineImpactForce(-impactForce, -zDiff));
             }
+        } else if (collidableObject) {
+             var zDiff = transform.position.z - other.transform.position.z;
+             var forceDirection = _hSpeed > 0 ? Vector3.left : Vector3.right;
+             var impactForce = forceDirection * collidableObject.Inertia;
+             AddCollisionForce(DetermineImpactForce(impactForce, 0));
         }
     }
 
