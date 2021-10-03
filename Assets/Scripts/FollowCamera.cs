@@ -41,17 +41,18 @@ public class FollowCamera : MonoBehaviour
     private void Update()
     {
         _landedDelay = Mathf.Max(0, _landedDelay - Time.deltaTime);
-        float target = _landedDelay > 1e-3f ? 10f : 10f + 1500f * (1f - Mathf.Exp(Mathf.Min(0, (5f - _player.transform.position.y)) / 10f));
+        float target = _landedDelay > 1e-3f ? 10f : 10f + 1500f * (1f - Mathf.Exp(Mathf.Min(0, (2f - _player.transform.position.y * _player.transform.position.y - Mathf.Max(0, _player.FallSpeed) * Mathf.Max(0, _player.FallSpeed))) / 10f));
         if (_player.FallSpeed < 0)
         {
             if (_player.transform.position.y < 5f)
             {
                 _lowTarget = 22000f;
-                _landedDelay = 2f;
+                _landedDelay = 0.5f;
             }
             else
             {
-                _lowTarget = _landedDelay > 1e-3f ? 22000f : Mathf.Min(_lowTarget, 130f + 21970f * Mathf.Exp(-target));
+                _lowTarget = _landedDelay > 1e-3f ? 22000f : Mathf.Min(_lowTarget, 200f + 21800f * Mathf.Exp(-target));
+                target = Mathf.Max(10f, Mathf.Min(target, _lowTarget - 1000f));
             }
         }
         else
@@ -78,11 +79,11 @@ public class FollowCamera : MonoBehaviour
         float hipassSpeed;
         if (_hipass.cutoffFrequency < 70f)
         {
-            hipassSpeed = 200f;
+            hipassSpeed = 500f;
         }
         else if (_hipass.cutoffFrequency < 100f)
         {
-            hipassSpeed = 150f;
+            hipassSpeed = 200f;
         }
         else
         {
