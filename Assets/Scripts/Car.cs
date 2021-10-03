@@ -32,17 +32,18 @@ public class Car : MonoBehaviour
     private float _fallSpeed;
     private float _vUncontrolledSpeed;
     private GearShiftState _gearShiftState = GearShiftState.UPSHIFTED;
-    public float DefaultSpeed { get { return _defaultSpeed; } }
     private Coroutine _downshiftCoroutine;
     public float VisualAcceleration { get; private set; }
     public float HSpeed { get { return _hSpeed; } }
     public float VSpeed { get { return _vSpeed; } }
     public float FallSpeed { get { return _fallSpeed; } }
+    public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
         _hSpeed = _defaultSpeed;
+        _driver.Claim(this);
     }
 
     void FixedUpdate()

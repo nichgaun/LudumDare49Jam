@@ -56,7 +56,7 @@ MonoBehaviour:
   _sprintMaxSpeed: 70
   _sprintMaxAcceleration: 120
   _decelerationDuringShift: 6
-  _strafeSpeed: 5
+  _strafeSpeed: 10
   _strafeStabilization: 0.999
   _downshiftDelay: 0.35
   _vImpactMultiplier: 0.25

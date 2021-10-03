@@ -81,7 +81,7 @@ Shader "Custom/Horizon"
           float gradientProg = min(skyPos.y / _GradientLength, 1);
           col = (1 - gradientProg) * _GradientStart + gradientProg * _GradientEnd;
           float sunDist = skyPos.x * skyPos.x + skyPos.y * skyPos.y;
-          float variedSunGlowSize = (1 + 0.1 * _SinTime.w) * _SunGlowSize;
+          float variedSunGlowSize = (1 + 0.2 * _SinTime.w) * _SunGlowSize;
           if (sunDist < _SunSize) {
             col += _SunColor;
           } else if (sunDist < _SunSize + variedSunGlowSize) {

@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerDriver : Driver
 {
+    public override void Claim(Car car)
+    {
+    }
+
     public override void ControlCar(out int hMove, out int vMove, out bool sprint)
     {
         hMove = 0;
