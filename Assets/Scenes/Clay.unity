@@ -466,9 +466,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _defaultSpeed
-      value: 12
-      objectReference: {fileID: 0}
+      propertyPath: _bronco
+      value: 
+      objectReference: {fileID: 351467679}
     - target: {fileID: 4964720944969046655, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
       propertyPath: m_Name
       value: PlayerCar
@@ -532,6 +532,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
+--- !u!1 &351467679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8961954954670488373, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
+  m_PrefabInstance: {fileID: 287349577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &699291014 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5457890025164535235, guid: c8a17e43d27a3ee43917240730bb1b06, type: 3}

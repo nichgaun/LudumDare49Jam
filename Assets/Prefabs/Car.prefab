@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _driver: {fileID: 0}
-  _defaultSpeed: 20
+  _defaultSpeed: 12
   _brakeMinSpeed: 4
   _brakeDeceleration: 40
   _walkMaxSpeed: 30
@@ -63,6 +63,8 @@ MonoBehaviour:
   _knockAsideThreshold: 0.1
   _knockAsideForce: 5
   _gravity: 35
+  _modelObject: {fileID: 0}
+  _flipSpeed: 360
 --- !u!23 &6070577121974920535
 MeshRenderer:
   m_ObjectHideFlags: 0
