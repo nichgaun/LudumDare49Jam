@@ -12,6 +12,7 @@ public class SpawnThings : MonoBehaviour
     [SerializeField] Vector3 offsetFromFollowed; //set in editor
 
     float fixedZPos; //set in Start
+    float fixedYPos; //set in start
 
     float spawnTimer;
 
@@ -24,6 +25,7 @@ public class SpawnThings : MonoBehaviour
         offsetFromFollowed = transform.position - followedObject.transform.position;
 
         fixedZPos = transform.position.z;
+        fixedYPos = transform.position.y;
     }
 
     // Update is called once per frame
@@ -33,6 +35,7 @@ public class SpawnThings : MonoBehaviour
 
         Vector3 tmp = transform.position;
         tmp.z = fixedZPos;
+        tmp.y = fixedYPos;
         transform.position = tmp;
 
         spawnTimer += Time.deltaTime;
