@@ -21,18 +21,25 @@ public class BarricadeComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        var impactingCar = other.GetComponent<Car>();
+        if (!impactingCar)
+        {
+            return;
+        }
+
         // determine relative positioning
         int _flyawayDirection;
         if (other.gameObject.transform.position.z < gameObject.transform.position.z) {
-            _flyawayDirection = -1;
-        } else {
             _flyawayDirection = 1;
+        } else {
+            _flyawayDirection = -1;
         }
-        var relativeSpeed = other.GetComponent<Car>().HSpeed;
+
+        var relativeSpeed = impactingCar.HSpeed;
         _ourCollidableSelf.SetVerticalSpeed(relativeSpeed);
         _ourCollidableSelf.SetHorizontalSpeed(relativeSpeed * _flyawayDirection);
         _ourCollidableSelf.SetTumbleDirectionAndIntensity(new Vector3(0, _spinDirection, 1), collidingTumbleSpeed);
         SoundPlayer.Play("hitBarricade");
     }
-    
+
 }
