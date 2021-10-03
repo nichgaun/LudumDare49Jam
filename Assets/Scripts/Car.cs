@@ -27,6 +27,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float _knockAsideThreshold;
     [SerializeField] private float _knockAsideForce;
     [SerializeField] private float _gravity;
+    [SerializeField] private GameObject _modelObject;
     private float _hSpeed;
     private float _vSpeed;
     private float _fallSpeed;
@@ -38,6 +39,8 @@ public class Car : MonoBehaviour
     public float VSpeed { get { return _vSpeed; } }
     public float FallSpeed { get { return _fallSpeed; } }
     public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
+    private float _pitch;
+    private float _pitchSpeed;
 
     private void Awake()
     {
@@ -109,6 +112,11 @@ public class Car : MonoBehaviour
         if (transform.position.y > groundHeight)
         {
             _fallSpeed -= _gravity * Time.fixedDeltaTime;
+            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            {
+                _fallSpeed = 14f;
+                _pitchSpeed = 90f;
+            }
         }
         else
         {
@@ -118,6 +126,8 @@ public class Car : MonoBehaviour
             {
                 _fallSpeed = 14f;
             }
+            _pitch = 0;
+            _pitchSpeed = 0;
         }
 
         // Strafing
@@ -144,6 +154,11 @@ public class Car : MonoBehaviour
 
         // Apply velocity
         transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime);
+        _pitch += _pitchSpeed * Time.fixedDeltaTime;
+        if (_modelObject)
+        {
+            _modelObject.transform.rotation.SetEulerAngles(_pitch, 90, 0);
+        }
     }
 
     private IEnumerator<WaitForSeconds> Downshift()
