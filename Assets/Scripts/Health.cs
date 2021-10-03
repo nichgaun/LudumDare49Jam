@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
 
     public void Heal(int healAmt){
         currentHealth += healAmt;
-        if (currentHealth < healthMax){
+        if (currentHealth > healthMax){
             currentHealth = healthMax;
         }
         healthText.text = "Health: " + currentHealth + "/" + healthMax;
