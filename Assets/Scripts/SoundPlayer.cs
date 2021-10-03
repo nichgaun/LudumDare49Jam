@@ -31,7 +31,7 @@ public class SoundPlayer : MonoBehaviour
         }
     }
 
-    public static void Play(string audioClipName, bool asOneShot = true)
+    public static void Play(string audioClipName, bool loop = false, bool asOneShot = true)
     {
         if (asOneShot)
         {
@@ -39,7 +39,13 @@ public class SoundPlayer : MonoBehaviour
         }
         else
         {
+            audioSourceDictionary[audioClipName].loop = loop;
             audioSourceDictionary[audioClipName].Play();
         }
+    }
+
+    public static void Stop(string audioClipName)
+    {
+        audioSourceDictionary[audioClipName].Stop();
     }
 }
