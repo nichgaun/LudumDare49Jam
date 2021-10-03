@@ -767,6 +767,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: thingsToSpawn.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: thingsToSpawn.Array.data[4]
+      value: 
+      objectReference: {fileID: 4106432698967655635, guid: 4677820d04374c1489811c563cc75025, type: 3}
     - target: {fileID: 6109733682024528102, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -827,6 +835,30 @@ PrefabInstance:
     - target: {fileID: 3938632080318610311, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
       propertyPath: m_Name
       value: Soundplayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClips.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClips.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: 359efc0cf09a4e7409e060a1b34fda44, type: 3}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClipNames.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClipVolumes.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClipNames.Array.data[3]
+      value: hitFood
+      objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClipVolumes.Array.data[3]
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3938632080318610329, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
       propertyPath: m_RootOrder
