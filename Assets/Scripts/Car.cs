@@ -47,6 +47,9 @@ public class Car : MonoBehaviour
     private float _pitch;
     private float _pitchSpeed;
     private float _yaw;
+    private float _rampY;
+    private bool _wasRamping;
+    private bool _stillRamping;
     [SerializeField] private float _yawLerpAmount;
 
     private void Awake()
@@ -115,7 +118,7 @@ public class Car : MonoBehaviour
             VisualAcceleration += acc;
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
-        var groundHeight = transform.localScale.y * 0.5f;
+        var groundHeight = _rampY + transform.localScale.y * 0.5f;
         if (transform.position.y > groundHeight)
         {
             _fallSpeed -= _gravity * Time.fixedDeltaTime;
@@ -160,6 +163,24 @@ public class Car : MonoBehaviour
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }
 
+        // Going off ramps
+        if (_wasRamping)
+        {
+            if (_stillRamping)
+            {
+                _pitch = -13.6f;
+                _pitchSpeed = 0;
+            }
+            else
+            {
+                _fallSpeed = 0.5f * HSpeed;
+                if (HSpeed > 0.9f * _sprintMaxSpeed)
+                {
+                    _pitchSpeed = -_flipSpeed;
+                }
+            }
+        }
+
         // Don't show acceleration when not providing any input to avoid shaking near default speed
         if (cruising)
         {
@@ -174,6 +195,9 @@ public class Car : MonoBehaviour
             _yaw = Mathf.Lerp(_yaw, Mathf.Rad2Deg * (float)Mathf.Atan2(-_vSpeed, _hSpeed), _yawLerpAmount);
             _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 + _yaw, 0);
         }
+        _rampY = 0;
+        _wasRamping = _stillRamping;
+        _stillRamping = false;
     }
 
     private IEnumerator<WaitForSeconds> Downshift()
@@ -193,7 +217,6 @@ public class Car : MonoBehaviour
     void OnTriggerEnterOrStay(Collider other)
     {
         var otherCar = other.gameObject.GetComponent<Car>();
-        var collidableObject = other.gameObject.GetComponent<CollidableObstacle>();
         if (otherCar)
         {
             Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);
@@ -205,11 +228,27 @@ public class Car : MonoBehaviour
                 AddCollisionForce(DetermineImpactForce(impactForce, zDiff));
                 otherCar.AddCollisionForce(otherCar.DetermineImpactForce(-impactForce, -zDiff));
             }
-        } else if (collidableObject) {
-             var zDiff = transform.position.z - other.transform.position.z;
-             var forceDirection = _hSpeed > 0 ? Vector3.left : Vector3.right;
-             var impactForce = forceDirection * collidableObject.Inertia;
-             AddCollisionForce(DetermineImpactForce(impactForce, 0));
+        }
+        else
+        {
+            var collidableObject = other.gameObject.GetComponent<CollidableObstacle>();
+            if (collidableObject)
+            {
+                var zDiff = transform.position.z - other.transform.position.z;
+                var forceDirection = _hSpeed > 0 ? Vector3.left : Vector3.right;
+                var impactForce = forceDirection * collidableObject.Inertia;
+                AddCollisionForce(DetermineImpactForce(impactForce, 0));
+            }
+            else
+            {
+                var ramp = other.gameObject.GetComponent<Ramp>();
+                if (ramp)
+                {
+                    float prog = 0.5f + (transform.position.x - other.transform.position.x) / 5f;
+                    _rampY = Mathf.Clamp(prog, 0f, 1f) * 2.5f;
+                    _stillRamping = true;
+                }
+            }
         }
     }
 
