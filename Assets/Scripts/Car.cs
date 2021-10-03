@@ -260,7 +260,7 @@ public class Car : MonoBehaviour
         else
         {
             var collidableObject = other.gameObject.GetComponent<CollidableObstacle>();
-            if (collidableObject)
+            if (collidableObject && !collidableObject.dead)
             {
                 var zDiff = transform.position.z - other.transform.position.z;
                 var forceDirection = _hSpeed > 0 ? Vector3.left : Vector3.right;
