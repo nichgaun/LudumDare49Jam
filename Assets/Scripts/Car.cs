@@ -46,6 +46,7 @@ public class Car : MonoBehaviour
     public float VSpeed { get { return _vSpeed; } }
     public float FallSpeed { get { return _fallSpeed; } }
     public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
+    private int directionMultiplier = 1;
     private float _pitch;
     private float _pitchSpeed;
     private float _yaw;
@@ -65,6 +66,9 @@ public class Car : MonoBehaviour
     {
         // Get car input from player or AI controller
         _driver.ControlCar(out int hMove, out int vMove, out bool sprint);
+
+        hMove *= directionMultiplier;
+        vMove *= directionMultiplier;
 
         // Handle shifting using a simplified system with only two gears, one that is "too high" and unable to provide optimal acceleration and one that is lower and has more acceleration
         // The lower gear is your sprint state, but takes a second to shift to, giving a lurching feeling
@@ -191,12 +195,12 @@ public class Car : MonoBehaviour
         }
 
         // Apply velocity
-        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime);
+        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime * directionMultiplier, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime * directionMultiplier);
         _pitch += _pitchSpeed * Time.fixedDeltaTime;
         if (_modelObject)
         {
             _yaw = Mathf.Lerp(_yaw, Mathf.Rad2Deg * (float)Mathf.Atan2(-_vSpeed, _hSpeed), _yawLerpAmount);
-            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 + _yaw, 0);
+            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 * directionMultiplier + _yaw, 0);
         }
         _rampY = 0;
         _wasRamping = _stillRamping;
@@ -210,6 +214,13 @@ public class Car : MonoBehaviour
         emitParams.position = transform.position;
         emitParams.applyShapeToPosition = true;
         ps.Emit(emitParams, 20);
+    }
+
+    public void ReverseDir(){
+        directionMultiplier *= -1;
+    }
+    public int GetDirection(){
+        return directionMultiplier;
     }
 
     private IEnumerator<WaitForSeconds> Downshift()
