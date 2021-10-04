@@ -77,7 +77,8 @@ public class SpawnThings : MonoBehaviour
                 index += 1;
             }
             int locationIndex = Random.Range(0, locations.Count);
-            Instantiate(toSpawn[index], transform.position + locations[locationIndex], Quaternion.identity);
+            var o = Instantiate(toSpawn[index], transform.position + locations[locationIndex], Quaternion.identity);
+            var car = o.GetComponent<Car>();
         }
     }
 }
