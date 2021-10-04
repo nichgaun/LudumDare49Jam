@@ -15,6 +15,8 @@ public class FollowCamera : MonoBehaviour
     private AudioLowPassFilter _lopass;
     private float _lowTarget;
     private float _landedDelay;
+    private float _targetProg;
+    private Vector3 _targetPoint;
 
     void Awake()
     {
@@ -22,6 +24,8 @@ public class FollowCamera : MonoBehaviour
         _initialDiff = transform.position - _player.transform.position;
         _hipass = GetComponent<AudioHighPassFilter>();
         _lopass = GetComponent<AudioLowPassFilter>();
+        _targetProg = 1f;
+        _targetPoint = Vector3.zero;
     }
 
     private void FixedUpdate()
@@ -32,7 +36,29 @@ public class FollowCamera : MonoBehaviour
     private IEnumerator<WaitForFixedUpdate> LateFixedUpdate()
     {
         yield return new WaitForFixedUpdate();
-        transform.position = Vector3.Lerp(_player.transform.position + _initialDiff, transform.position + _player.DefaultSpeed * Time.deltaTime * Vector3.right, Mathf.Pow(1 - _lerpAmount, Time.fixedDeltaTime));
+        /*
+        if (_player.HSpeed > _player.DefaultSpeed + (_player.SprintMaxSpeed - _player.DefaultSpeed) * 0.5f)
+        {
+            _targetProg = Mathf.Lerp(1f, _targetProg, Mathf.Pow(1 - _lerpAmount, Time.fixedDeltaTime));
+        }
+        else if (_player.HSpeed > _player.DefaultSpeed + (_player.WalkMaxSpeed - _player.DefaultSpeed) * 0.5f)
+        {
+            _targetProg = Mathf.Lerp(0.25f, _targetProg, Mathf.Pow(1 - _lerpAmount, Time.fixedDeltaTime));
+        }
+        else
+        {
+            _targetProg = Mathf.Lerp(0f, _targetProg, Mathf.Pow(1 - _lerpAmount, Time.fixedDeltaTime));
+        }
+        var targetPoint = _player.transform.position + Vector3.right * (1f + 8f * _targetProg) + Vector3.up * 4f * _targetProg;
+        var lookAtPoint = _player.transform.position + Vector3.right * (1f + 8f * _targetProg);
+        */
+        var targetPoint = Vector3.zero;
+        if (_player.HSpeed > _player.DefaultSpeed + (_player.SprintMaxSpeed - _player.DefaultSpeed) * 0.9f)
+        {
+            targetPoint = 4f * Vector3.up;
+        }
+        _targetPoint = Vector3.Lerp(targetPoint, _targetPoint, Mathf.Pow(1 - 0.75f, Time.fixedDeltaTime));
+        transform.position = Vector3.Lerp(_player.transform.position + _targetPoint + _initialDiff, transform.position + _player.DefaultSpeed * Time.deltaTime * Vector3.right, Mathf.Pow(1 - _lerpAmount, Time.fixedDeltaTime));
         transform.LookAt(_player.transform.position, Vector3.up);
         _roll = Mathf.Lerp(_player.VisualAcceleration * _rollFactor, _roll, Mathf.Pow(1 - _rollLerpAmount, Time.fixedDeltaTime));
         transform.Rotate(transform.InverseTransformDirection(transform.forward), _roll);
