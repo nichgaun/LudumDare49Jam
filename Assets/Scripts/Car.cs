@@ -218,7 +218,7 @@ public class Car : MonoBehaviour
         var zNext = transform.position.z + _vSpeed * Time.fixedDeltaTime * directionMultiplier;
         if (!_inMainMenu)
         {
-            zNext = Mathf.Clamp(zNext, -41f, 41f);
+            zNext = Mathf.Clamp(zNext, -29f, 29f);
         }
         transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime * directionMultiplier, transform.position.y + _fallSpeed * Time.fixedDeltaTime, zNext);
         _pitch = ShiftMod(_pitch + _pitchSpeed * Time.fixedDeltaTime, 360);
