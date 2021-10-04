@@ -72,9 +72,6 @@ public class Car : MonoBehaviour
         // Get car input from player or AI controller
         _driver.ControlCar(out int hMove, out int vMove, out bool sprint);
 
-        hMove *= directionMultiplier;
-        vMove *= directionMultiplier;
-
         // Handle shifting using a simplified system with only two gears, one that is "too high" and unable to provide optimal acceleration and one that is lower and has more acceleration
         // The lower gear is your sprint state, but takes a second to shift to, giving a lurching feeling
         if (sprint) {
