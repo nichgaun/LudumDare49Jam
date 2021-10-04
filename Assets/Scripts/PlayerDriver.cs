@@ -39,19 +39,19 @@ public class PlayerDriver : Driver
         vMove = 0;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            hMove -= 1;
+            vMove += 1;
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            hMove += 1;
+            vMove -= 1;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            vMove -= 1;
+            hMove -= 1;
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            vMove += 1;
+            hMove += 1;
         }
         sprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
     }
