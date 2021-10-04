@@ -36,6 +36,8 @@ public class Radio : MonoBehaviour
         playerCar = player.GetComponent<Car>();
 
         radioText = GameObject.FindGameObjectWithTag("RadioText").GetComponent<Text>();
+
+        UpdateSongEffect();
     }
 
     // Update is called once per frame
