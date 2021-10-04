@@ -138,11 +138,6 @@ public class Car : MonoBehaviour
         if (transform.position.y > groundHeight)
         {
             _fallSpeed -= _gravity * Time.fixedDeltaTime;
-            if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
-            {
-                Emit();
-                _pitchSpeed = -_flipSpeed;
-            }
         }
         else
         {
@@ -161,10 +156,6 @@ public class Car : MonoBehaviour
                 _pitchSpeed = 0;
                 _yawSpeed = 0;
                 _rollSpeed = 0;
-            }
-            if (Input.GetKey(KeyCode.Space))
-            {
-                _fallSpeed = _jumpSpeed;
             }
             _pitch = 0;
             _roll = 0;
@@ -262,7 +253,7 @@ public class Car : MonoBehaviour
         return ((a + b / 2) % b + b) % b - b / 2;
     }
 
-    private void Emit()
+    public void Emit()
     {
         var ps = GameObject.FindGameObjectWithTag(TagName.ParticleSystem).GetComponent<ParticleSystem>();
         var emitParams = new ParticleSystem.EmitParams();

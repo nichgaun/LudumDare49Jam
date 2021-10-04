@@ -29,6 +29,11 @@ public class PlayerDeath : MonoBehaviour
     }
 
     void OnDestroy(){
+        string[] ranks = new string[] { "Y", "M", "Drive (2021)", "Very Okay", "1/2", "57%", "R", "U", "Ask again later" };
+        var text = GameObject.FindGameObjectWithTag("GameOver").GetComponent<Text>();
+        text.text = "Your trip ends here!\nYour rank: " + ranks[Random.Range(0, ranks.Length)];
+        text.enabled = true;
+        GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<Car>().Emit();
         GetComponent<Health>().UnsubscribeToHealthChange(DieOnZero);
     }
 
