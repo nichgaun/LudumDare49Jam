@@ -1222,50 +1222,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: offRoadWeights.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[0]
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[1]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[2]
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[3]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[4]
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: roadWeights.Array.data[5]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: offRoadWeights.Array.data[0]
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: offRoadWeights.Array.data[1]
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: thingsToSpawnInRoad.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: thingsToSpawnInRoad.Array.data[6]
       value: 
       objectReference: {fileID: 0}

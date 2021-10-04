@@ -51,12 +51,19 @@ MonoBehaviour:
   - {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
   - {fileID: 1370845632242064967, guid: fe5151bed53f51c45977be31b98fa58e, type: 3}
   - {fileID: 5457890025164535235, guid: c8a17e43d27a3ee43917240730bb1b06, type: 3}
-  - {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
-  roadWeights: []
+  roadWeights:
+  - 1
+  - 20
+  - 100
+  - 20
+  - 20
+  - 5
   thingsToSpawnOffRoad:
   - {fileID: 8955414892688085042, guid: de710c1c51aab7248bb525152364e75a, type: 3}
   - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
-  offRoadWeights: []
+  offRoadWeights:
+  - 5
+  - 2
   forwardSpawnLocations:
   - {x: 0, y: 0, z: -1.2}
   - {x: 0, y: 0, z: -3.4}
