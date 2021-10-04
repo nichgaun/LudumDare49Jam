@@ -1266,14 +1266,6 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: thingsToSpawnInRoad.Array.data[2]
-      value: 
-      objectReference: {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
-      propertyPath: thingsToSpawnInRoad.Array.data[3]
-      value: 
-      objectReference: {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
-    - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: thingsToSpawnInRoad.Array.data[6]
       value: 
       objectReference: {fileID: 0}
