@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inertia: 0
+  dead: 0
 --- !u!114 &3103796453906997231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,7 +97,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7000221155228768529}
-  - component: {fileID: 3456412757769511495}
   - component: {fileID: 8153988458341239552}
   - component: {fileID: -6665759836565019199}
   m_Layer: 0
@@ -123,21 +123,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3456412757769511495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1370845632242064967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f746232b306af647935efcc2074b8fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  barricadeLeft: {fileID: 0}
-  barricadeRight: {fileID: 0}
-  cop: {fileID: 8763539924787384480}
 --- !u!114 &8153988458341239552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inertia: 5
+  dead: 0
 --- !u!114 &-6665759836565019199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inertia: 0
+  dead: 0
 --- !u!114 &12355083741968839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inertia: 2
+  dead: 0
 --- !u!114 &8098865108188411581
 MonoBehaviour:
   m_ObjectHideFlags: 0
