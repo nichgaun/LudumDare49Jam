@@ -7,7 +7,9 @@ public class SpawnThings : MonoBehaviour
     [SerializeField] float spawnInterval; //set in editor
 
     [SerializeField] List<GameObject> thingsToSpawnInRoad; //set in editor
+    [SerializeField] List<float> roadWeights; //set in editor
     [SerializeField] List<GameObject> thingsToSpawnOffRoad; //set in editor
+    [SerializeField] List<float> offRoadWeights; //set in editor
 
     //spawn lanes
     [SerializeField] List<Vector3> forwardSpawnLocations;
@@ -47,18 +49,33 @@ public class SpawnThings : MonoBehaviour
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
         {
-            SpawnNew(thingsToSpawnOffRoad, offRoadSpawnLocations);
-            SpawnNew(thingsToSpawnInRoad, forwardSpawnLocations);
-            SpawnNew(thingsToSpawnInRoad, oncomingSpawnLocations);
+            SpawnNew(thingsToSpawnOffRoad, offRoadWeights, offRoadSpawnLocations, false);
+            SpawnNew(thingsToSpawnInRoad, roadWeights, forwardSpawnLocations, false);
+            SpawnNew(thingsToSpawnInRoad, roadWeights, oncomingSpawnLocations, true);
             spawnTimer = 0;
         }
     }
 
-    private void SpawnNew(List<GameObject> toSpawn, List<Vector3> locations)
+    private void SpawnNew(List<GameObject> toSpawn, List<float> weights, List<Vector3> locations, bool oncoming)
     {
         if (toSpawn.Count != 0)
         {
-            int index = Random.Range(0, toSpawn.Count);
+            float sum = 0;
+            foreach (var w in weights)
+            {
+                sum += w;
+            }
+            float choice = Random.Range(0, sum);
+            int index = 0;
+            foreach (var w in weights)
+            {
+                choice -= w;
+                if (choice < 0)
+                {
+                    break;
+                }
+                index += 1;
+            }
             int locationIndex = Random.Range(0, locations.Count);
             Instantiate(toSpawn[index], transform.position + locations[locationIndex], Quaternion.identity);
         }
