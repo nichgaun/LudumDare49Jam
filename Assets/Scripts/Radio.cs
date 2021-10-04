@@ -27,7 +27,7 @@ public class Radio : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentSong = 0;
+        currentSong = 1;
         goalTimeScale = 1f;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
