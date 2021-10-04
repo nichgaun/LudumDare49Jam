@@ -548,14 +548,6 @@ PrefabInstance:
       propertyPath: _bronco
       value: 
       objectReference: {fileID: 351467679}
-    - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _flipSpeed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4964720944969046654, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
-      propertyPath: _bouncePitchSpeed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4964720944969046655, guid: aae01f2bc50be8a42ae9f701a8271f8c, type: 3}
       propertyPath: m_Name
       value: PlayerCar
@@ -1357,7 +1349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6109733682024528102, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 6109733682024528102, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1683,11 +1675,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3973306938223152236, guid: 7cc9f09f281fab44e970d285c71ee8dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3973306938223152236, guid: 7cc9f09f281fab44e970d285c71ee8dc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 3973306938223152236, guid: 7cc9f09f281fab44e970d285c71ee8dc, type: 3}
       propertyPath: m_LocalRotation.w

@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _GrassTex:
-        m_Texture: {fileID: 2800000, guid: 2405126740937e34eb275e9b0452f421, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55df10b5b41104345b682f76ba6cb7a1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
@@ -83,7 +83,7 @@ Material:
     - _SrcBlend: 1
     - _SunGlowSize: 38.58
     - _SunSize: 4
-    - _TexSize: 10
+    - _TexSize: 8
     - _UVSec: 0
     - _XSign: -1
     - _ZSign: 1
