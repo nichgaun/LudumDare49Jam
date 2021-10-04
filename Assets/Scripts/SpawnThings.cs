@@ -22,15 +22,17 @@ public class SpawnThings : MonoBehaviour
     float fixedZPos; //set in Start
     float fixedYPos; //set in start
 
-    float spawnTimer;
+    float distanceTraveled;
+    Vector3 lastPosition;
 
     private void Start()
     {
-        spawnTimer = 0;
+        distanceTraveled = 0;
 
         if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag(TagName.Player);
         
         offsetFromFollowed = transform.position - followedObject.transform.position;
+        lastPosition = transform.position;
 
         fixedZPos = transform.position.z;
         fixedYPos = transform.position.y;
@@ -46,14 +48,16 @@ public class SpawnThings : MonoBehaviour
         tmp.y = fixedYPos;
         transform.position = tmp;
 
-        spawnTimer += Time.deltaTime;
-        if (spawnTimer >= spawnInterval)
+        distanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
+        if (distanceTraveled >= spawnInterval)
         {
             SpawnNew(thingsToSpawnOffRoad, offRoadWeights, offRoadSpawnLocations, false);
             SpawnNew(thingsToSpawnInRoad, roadWeights, forwardSpawnLocations, false);
             SpawnNew(thingsToSpawnInRoad, roadWeights, oncomingSpawnLocations, true);
-            spawnTimer = 0;
+            distanceTraveled = 0;
         }
+
+        lastPosition = transform.position;
     }
 
     private void SpawnNew(List<GameObject> toSpawn, List<float> weights, List<Vector3> locations, bool oncoming)
