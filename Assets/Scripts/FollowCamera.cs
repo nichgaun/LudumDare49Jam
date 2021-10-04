@@ -15,7 +15,6 @@ public class FollowCamera : MonoBehaviour
     private AudioLowPassFilter _lopass;
     private float _lowTarget;
     private float _landedDelay;
-    private float _targetProg;
     private Vector3 _targetPoint;
 
     void Awake()
@@ -24,7 +23,6 @@ public class FollowCamera : MonoBehaviour
         _initialDiff = transform.position - _player.transform.position;
         _hipass = GetComponent<AudioHighPassFilter>();
         _lopass = GetComponent<AudioLowPassFilter>();
-        _targetProg = 1f;
         _targetPoint = Vector3.zero;
     }
 
