@@ -724,7 +724,6 @@ MonoBehaviour:
   rageInterval: 2
   rageIntervalIncrease: 1
   rageText: {fileID: 1110983876}
-  rageMultiplier: 1
 --- !u!114 &1549000365
 MonoBehaviour:
   m_ObjectHideFlags: 0
