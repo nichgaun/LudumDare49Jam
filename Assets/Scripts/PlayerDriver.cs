@@ -6,6 +6,7 @@ public class PlayerDriver : Driver
     private Rage _rage;
     [SerializeField] private float _rageBuildRate;
     [SerializeField] private float _timeToFillNeedForSpeed;
+    [SerializeField] bool hasRage;
     private GameObject _speedUpText;
     private float _needForSpeed;
 
@@ -19,17 +20,13 @@ public class PlayerDriver : Driver
     public override void ControlCar(out int hMove, out int vMove, out bool sprint)
     {
         _needForSpeed = Mathf.Clamp(_needForSpeed - (2 * (_car.HSpeed - _car.DefaultSpeed) / (_car.WalkMaxSpeed - _car.DefaultSpeed) - 1) * Time.fixedDeltaTime / _timeToFillNeedForSpeed, 0f, 1f);
-        if (_needForSpeed > 1 - 1e-3f)
-        {
-            _rage.UpdateRage(_rageBuildRate * Time.fixedDeltaTime);
-        }
         if (_speedUpText)
         {
             _speedUpText.SetActive(_needForSpeed > 0.8f);
         }
         if (_needForSpeed > 1 - 1e-3f)
         {
-            _rage.UpdateRage(_rageBuildRate * Time.fixedDeltaTime);
+            if (hasRage) _rage.UpdateRage(_rageBuildRate * Time.fixedDeltaTime);        
         }
         else
         {
