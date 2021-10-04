@@ -27,6 +27,7 @@ public class PlayerDriver : Driver
                 if (!_speedUpText.isActiveAndEnabled)
                 {
                     _speedUpText.BlinkTime = 0;
+                    SoundPlayer.Play("SpeedUpThree");
                 }
                 _speedUpText.gameObject.SetActive(true);
             }

@@ -51,6 +51,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: eeb8602c09c415547956862651402547, type: 3}
   - {fileID: 8300000, guid: 6a21fbb05e3d1ce45bb6b89fa5bd568a, type: 3}
   - {fileID: 8300000, guid: 892bf1a6f7c0ec44e87cca6a780c1adc, type: 3}
+  - {fileID: 8300000, guid: cdf02912498628c41b0ff416fe623e4b, type: 3}
   audioClipNames:
   - cdblip
   - hitBarricade
@@ -59,11 +60,13 @@ MonoBehaviour:
   - number1
   - number2
   - number3
+  - SpeedUpThree
   audioClipVolumes:
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
-  - 1
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
+  - 0.3
