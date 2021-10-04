@@ -13,11 +13,15 @@ public class Health : MonoBehaviour
 
     Dictionary<string, float> damageMultipliers;
 
+    private void Awake()
+    {
+        damageMultipliers = new Dictionary<string, float>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = healthMax;
-        damageMultipliers = new Dictionary<string, float>();
     }
 
     public void Damage(int damageAmt){

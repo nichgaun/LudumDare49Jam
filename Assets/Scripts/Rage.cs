@@ -10,11 +10,15 @@ public class Rage : MonoBehaviour
 
     Dictionary<string, float> rageMultipliers;
 
+    private void Awake()
+    {
+        rageMultipliers = new Dictionary<string, float>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         currentRage = 0;
-        rageMultipliers = new Dictionary<string, float>();
     }
 
     public void UpdateRage(float rageUpdateVal)
