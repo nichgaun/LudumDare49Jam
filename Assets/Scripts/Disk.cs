@@ -21,7 +21,7 @@ public class Disk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bananaCountTextField = GameObject.FindGameObjectWithTag(TagName.UIBananaCount).GetComponent<Text>();
+        bananaCountTextField = GameObject.FindGameObjectWithTag(TagName.UIBananaCount)?.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -44,7 +44,7 @@ public class Disk : MonoBehaviour
         if (other.tag == "Player")
         {
             StaticInformation.myInt += 1;
-            bananaCountTextField.text = "Banana Count: " + StaticInformation.myInt;
+            if (bananaCountTextField != null) bananaCountTextField.text = "Banana Count: " + StaticInformation.myInt;
             SoundPlayer.Play("cdblip");
             _state = DiskState.COLLECTING;
         }
