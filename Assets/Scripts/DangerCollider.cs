@@ -22,6 +22,10 @@ public class DangerCollider : MonoBehaviour
     private void OnTriggerEnterOrStay(Collider other)
     {
         var otherCar = other.gameObject.GetComponent<Car>();
+
+        if (otherCar == _car)
+            return;
+
         float otherSpeed = otherCar ? otherCar.HSpeed : 0;
         float diff = otherSpeed - _car.HSpeed;
         if ((other.transform.position.x - _car.transform.position.x) / Mathf.Max(1e-3f, _car.DefaultSpeed - otherSpeed) < _dangerTimeThreshold)

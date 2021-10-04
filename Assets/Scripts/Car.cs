@@ -245,6 +245,7 @@ public class Car : MonoBehaviour
     void OnTriggerEnterOrStay(Collider other)
     {
         var otherCar = other.gameObject.GetComponent<Car>();
+
         if (otherCar)
         {
             Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);

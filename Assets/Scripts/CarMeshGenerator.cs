@@ -218,6 +218,10 @@ public class CarMeshGenerator : MonoBehaviour
         // v.y = tireSize/10;
         car.transform.localPosition = new Vector3 (0f, tireSize/10, 0f);
 
+        var collider = gameObject.GetComponent<BoxCollider>();
+        collider.size = new Vector3(width, tireSize/10+height+cabinHeight, depth);
+        collider.center = new Vector3(width/2, (tireSize/10+height+cabinHeight)/2, depth/2);
+
         // return car;
     }
 
