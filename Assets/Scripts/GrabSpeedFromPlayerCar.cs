@@ -19,6 +19,11 @@ public class GrabSpeedFromPlayerCar : MonoBehaviour
 
     void Update()
     {
-        rt.localRotation = Quaternion.Euler(0, 0, minAngle + Mathf.Clamp(Mathf.Abs(playerCar.HSpeed), 0, maxGaugeSpeed) / maxGaugeSpeed * (maxAngle - minAngle));
+        float desiredAngle = minAngle + Mathf.Clamp(Mathf.Abs(playerCar.HSpeed), 0, maxGaugeSpeed) / maxGaugeSpeed * (maxAngle - minAngle);
+
+        rt.localRotation = Quaternion.Euler(
+            0,
+            0,
+            desiredAngle);
     }
 }

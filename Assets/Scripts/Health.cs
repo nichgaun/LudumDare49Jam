@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     [SerializeField] int healthMax; //set in editor
-    [SerializeField] Text healthText; // set in editor
-    int currentHealth;
+    public int MaxHealth { get { return healthMax; } }
+    [SerializeField] int currentHealth;
+    public int CurrentHealth { get { return currentHealth; } }
 
     System.Action<int> onHealthChange;
 
@@ -17,7 +17,6 @@ public class Health : MonoBehaviour
     void Start()
     {
         currentHealth = healthMax;
-        healthText.text = "Health: " + currentHealth + "/" + healthMax;
         damageMultipliers = new Dictionary<string, float>();
     }
 
@@ -32,7 +31,6 @@ public class Health : MonoBehaviour
         if (currentHealth < 0){
             currentHealth = 0;
         }
-        healthText.text = "Health: " + currentHealth + "/" + healthMax;
         
         if (onHealthChange != null) onHealthChange(currentHealth);
     }
@@ -42,7 +40,6 @@ public class Health : MonoBehaviour
         if (currentHealth > healthMax){
             currentHealth = healthMax;
         }
-        healthText.text = "Health: " + currentHealth + "/" + healthMax;
         if (onHealthChange != null) onHealthChange(currentHealth);
     }
 
