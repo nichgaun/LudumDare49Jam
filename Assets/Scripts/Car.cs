@@ -51,7 +51,10 @@ public class Car : MonoBehaviour
     private int directionMultiplier = 1;
     private float _pitch;
     private float _pitchSpeed;
+    private float _roll;
+    private float _rollSpeed;
     private float _yaw;
+    private float _yawSpeed;
     private float _rampY;
     private bool _wasRamping;
     private bool _stillRamping;
@@ -143,17 +146,23 @@ public class Car : MonoBehaviour
             {
                 _fallSpeed = _fallSpeed * -_bounceProportion;
                 _pitchSpeed = Random.Range(-_bouncePitchSpeed, _bouncePitchSpeed);
+                _yawSpeed = Mathf.Clamp(_yawSpeed * -0.9f, -_bouncePitchSpeed, _bouncePitchSpeed);
+                _rollSpeed = Random.Range(-_bouncePitchSpeed, _bouncePitchSpeed);
+                _yaw = 0;
             }
             else
             {
                 _fallSpeed = Mathf.Max(_fallSpeed, 0);
                 _pitchSpeed = 0;
+                _yawSpeed = 0;
+                _rollSpeed = 0;
             }
             if (Input.GetKey(KeyCode.Space))
             {
                 _fallSpeed = _jumpSpeed;
             }
             _pitch = 0;
+            _roll = 0;
         }
 
         // Strafing
@@ -183,9 +192,17 @@ public class Car : MonoBehaviour
             else
             {
                 _fallSpeed = 0.5f * HSpeed;
-                if (HSpeed > 0.9f * _sprintMaxSpeed)
+                if (HSpeed > 0.8f * _sprintMaxSpeed)
                 {
-                    _pitchSpeed = -_flipSpeed;
+                    if (Mathf.Abs(VSpeed) < 1e-3)
+                    {
+                        _pitchSpeed = -_flipSpeed;
+                    }
+                    else
+                    {
+                        _rollSpeed = Mathf.Sign(VSpeed) * _flipSpeed * 1.5f;
+                        _yawSpeed = -Mathf.Sign(VSpeed) * _flipSpeed * 0.75f;
+                    }
                 }
             }
         }
@@ -198,15 +215,25 @@ public class Car : MonoBehaviour
 
         // Apply velocity
         transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime * directionMultiplier, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime * directionMultiplier);
-        _pitch += _pitchSpeed * Time.fixedDeltaTime;
+        _pitch = ShiftMod(_pitch + _pitchSpeed * Time.fixedDeltaTime, 360);
+        _yaw = ShiftMod(_yaw + _yawSpeed * Time.fixedDeltaTime, 360);
+        _roll = ShiftMod(_roll + _rollSpeed * Time.fixedDeltaTime, 360);
         if (_modelObject)
         {
-            _yaw = Mathf.Lerp(_yaw, Mathf.Rad2Deg * (float)Mathf.Atan2(-_vSpeed, _hSpeed), _yawLerpAmount);
-            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 * directionMultiplier + _yaw, 0);
+            if (Mathf.Abs(_yawSpeed) < 1e-3)
+            {
+                _yaw = Mathf.Lerp(_yaw, Mathf.Rad2Deg * (float)Mathf.Atan2(-_vSpeed, _hSpeed), _yawLerpAmount);
+            }
+            _modelObject.transform.eulerAngles = new Vector3(_pitch, 90 * directionMultiplier + _yaw, _roll);
         }
         _rampY = 0;
         _wasRamping = _stillRamping;
         _stillRamping = false;
+    }
+
+    private float ShiftMod(float a, float b)
+    {
+        return ((a + b / 2) % b + b) % b - b / 2;
     }
 
     private void Emit()
