@@ -86,6 +86,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6406568931071906857}
   - component: {fileID: -5043255651922892607}
+  - component: {fileID: 4572105623667029511}
+  - component: {fileID: 4607043036368777714}
   m_Layer: 0
   m_Name: Trashcan
   m_TagString: Untagged
@@ -120,6 +122,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 989fa13d9ab78084cbc47ff98226e358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _inMainMenu: 0
+--- !u!114 &4572105623667029511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955414892688085042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376f175a276d2174f84926ebdc5b406f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+--- !u!114 &4607043036368777714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8955414892688085042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7762669f0cdb0249a70c73793c14e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rageDelta: -3
 --- !u!1001 &1263337908467977204
 PrefabInstance:
   m_ObjectHideFlags: 0

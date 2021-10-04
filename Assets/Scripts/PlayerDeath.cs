@@ -6,10 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class PlayerDeath : MonoBehaviour
 {
+    private bool weAreDead;
+    public bool IsDead { get { return weAreDead; } }
+    
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Health>().SubscribeToHealthChange(DieOnZero);
+        weAreDead = false;
     }
 
     public void DieOnZero(int currentHealth){
@@ -19,6 +23,7 @@ public class PlayerDeath : MonoBehaviour
     }
 
     IEnumerator Death(){
+        weAreDead = true;
         yield return new WaitForSeconds(2);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

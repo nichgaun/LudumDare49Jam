@@ -494,6 +494,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soundplayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClips.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: 859c788e22adf8c4f80ba1a3582a82d4, type: 3}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClips.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 24f68587001a7d3468acdd337bdbff67, type: 3}
+    - target: {fileID: 3938632080318610328, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
+      propertyPath: audioClips.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: c7b12f6b327ca054cbf117d99e139fa2, type: 3}
     - target: {fileID: 3938632080318610329, guid: 990d0a3b88a171e4ea6ebaccea7a4efa, type: 3}
       propertyPath: m_RootOrder
       value: 8

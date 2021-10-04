@@ -76,6 +76,8 @@ public class Radio : MonoBehaviour
                 //reset time scale
                 goalTimeScale = 1f;
 
+                playerCar.CanSprint = false;
+
                 radioText.text = BASE_RADIO_TEXT + "---";
                 break;
             case 1:
@@ -83,23 +85,6 @@ public class Radio : MonoBehaviour
                 SoundPlayer.Stop(TRACK2);
                 SoundPlayer.Stop(TRACK3);
                 SoundPlayer.Play(TRACK1, true, false);
-
-                //set radio rage
-                playerRage?.SetMultiplier("radioRage", 3f);
-
-                //set damage multiplier
-                playerHealth?.SetMultiplier("radioDamage", 0.5f);
-
-                //reset time scale
-                goalTimeScale = 1f;
-
-                radioText.text = BASE_RADIO_TEXT + "Track 1";
-                break;
-            case 2:
-                //select song 2
-                SoundPlayer.Stop(TRACK1);
-                SoundPlayer.Stop(TRACK3);
-                SoundPlayer.Play(TRACK2, true, false);
 
                 //reset radio rage
                 playerRage?.SetMultiplier("radioRage", 1f);
@@ -110,7 +95,28 @@ public class Radio : MonoBehaviour
                 //reset time scale
                 goalTimeScale = 1f;
 
-                radioText.text = BASE_RADIO_TEXT + "Track 2";
+                playerCar.CanSprint = true;
+
+                radioText.text = BASE_RADIO_TEXT + "Press Shift To Sprint";
+                break;
+            case 2:
+                //select song 2
+                SoundPlayer.Stop(TRACK1);
+                SoundPlayer.Stop(TRACK3);
+                SoundPlayer.Play(TRACK2, true, false);
+
+                //set radio rage
+                playerRage?.SetMultiplier("radioRage", 3f);
+
+                //set damage multiplier
+                playerHealth?.SetMultiplier("radioDamage", 0.5f);
+
+                //reset time scale
+                goalTimeScale = 1f;
+
+                playerCar.CanSprint = false;
+
+                radioText.text = BASE_RADIO_TEXT + "Resistant To Damage";
                 break;
             case 3:
                 //select song 3
@@ -127,7 +133,9 @@ public class Radio : MonoBehaviour
                 //set time scale to  s l o w
                 goalTimeScale = 0.2f;
 
-                radioText.text = BASE_RADIO_TEXT + "Track 3";
+                playerCar.CanSprint = false;
+
+                radioText.text = BASE_RADIO_TEXT + "Time Slows Down";
                 break;
             default:
                 break;
