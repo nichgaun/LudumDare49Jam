@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8458311147948286714}
   - component: {fileID: -6320134903522310159}
   - component: {fileID: 2497784285151504099}
+  - component: {fileID: 1787245931163069213}
   m_Layer: 0
   m_Name: SingleTrafficCone
   m_TagString: Untagged
@@ -120,6 +121,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &1787245931163069213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457890025164535235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989fa13d9ab78084cbc47ff98226e358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &495649201372641067
 PrefabInstance:
   m_ObjectHideFlags: 0

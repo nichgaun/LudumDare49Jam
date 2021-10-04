@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8036744122890692663}
   - component: {fileID: 5666276301302522843}
   - component: {fileID: 2592829614427748205}
+  - component: {fileID: 8106874021088316205}
   m_Layer: 0
   m_Name: Disk
   m_TagString: Untagged
@@ -61,6 +62,18 @@ MonoBehaviour:
   angularSpeed: 15
   collectingMultiplier: 5
   collectingVerticalSpeed: 10
+--- !u!114 &8106874021088316205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4106432698967655635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989fa13d9ab78084cbc47ff98226e358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2291574959179162513
 PrefabInstance:
   m_ObjectHideFlags: 0

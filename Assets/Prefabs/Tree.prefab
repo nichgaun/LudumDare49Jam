@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: -4591343320541446152}
   - component: {fileID: -4798567817791967417}
   - component: {fileID: 4156389300358603620}
+  - component: {fileID: -5314879397610002072}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -123,6 +124,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collidingTumbleSpeed: 41
+--- !u!114 &-5314879397610002072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702366545532387713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 989fa13d9ab78084cbc47ff98226e358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8969989244031112970
 PrefabInstance:
   m_ObjectHideFlags: 0
