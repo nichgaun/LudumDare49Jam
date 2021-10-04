@@ -12,9 +12,7 @@ public class Rage : MonoBehaviour
     float currentRage;
     float rageTime = 0;
 
-    public float rageMultiplier;
-
-
+    Dictionary<string, float> rageMultipliers;
 
     System.Action<int> onRageChange;
 
@@ -22,8 +20,8 @@ public class Rage : MonoBehaviour
     void Start()
     {
         currentRage = 0;
-        rageMultiplier = 1;
         rageText.text = "Rage: " + currentRage + "/" + rageMax;
+        rageMultipliers = new Dictionary<string, float>();
     }
 
     public void UpdateRage(float rageUpdateVal){
@@ -41,11 +39,26 @@ public class Rage : MonoBehaviour
     void Update(){
         rageTime += Time.deltaTime;
         if (rageTime > rageInterval){
-            UpdateRage(rageIntervalIncrease * rageMultiplier);
+
+            float totalMultiplier = 1;
+            foreach (var multiplier in rageMultipliers)
+            {
+                totalMultiplier *= multiplier.Value;
+            }
+
+            UpdateRage(rageIntervalIncrease * totalMultiplier);
             rageTime = 0;
         }
 
     }
 
+    public void SetMultiplier(string key, float multiplier)
+    {
+        rageMultipliers[key] = multiplier;
+    }
 
+    public void RemoveMultiplier(string key)
+    {
+        rageMultipliers.Remove(key);
+    }
 }
