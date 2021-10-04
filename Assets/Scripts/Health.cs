@@ -11,15 +11,24 @@ public class Health : MonoBehaviour
 
     System.Action<int> onHealthChange;
 
+    Dictionary<string, float> damageMultipliers;
+
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = healthMax;
         healthText.text = "Health: " + currentHealth + "/" + healthMax;
+        damageMultipliers = new Dictionary<string, float>();
     }
 
     public void Damage(int damageAmt){
-        currentHealth -= damageAmt;
+        float totalMultiplier = 1;
+        foreach (var multiplier in damageMultipliers)
+        {
+            totalMultiplier *= multiplier.Value;
+        }
+        
+        currentHealth -= Mathf.RoundToInt(damageAmt * totalMultiplier);
         if (currentHealth < 0){
             currentHealth = 0;
         }
@@ -45,4 +54,13 @@ public class Health : MonoBehaviour
         onHealthChange -= action;
     }
 
+    public void SetMultiplier(string key, float multiplier)
+    {
+        damageMultipliers[key] = multiplier;
+    }
+
+    public void RemoveMultiplier(string key)
+    {
+        damageMultipliers.Remove(key);
+    }
 }

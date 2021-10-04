@@ -5,6 +5,8 @@ public class CollidableObstacle : MonoBehaviour
     [SerializeField] float _inertia; // set in editor
     public float Inertia { get { return _inertia; } }
 
+    public bool dead = false;
+
     private float _VSpeed;
     private float _HSpeed;
     private float _groundHeight;
