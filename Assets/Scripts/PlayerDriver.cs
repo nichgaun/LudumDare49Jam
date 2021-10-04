@@ -21,8 +21,9 @@ public class PlayerDriver : Driver
         }
     }
 
-    public override void ControlCar(out int hMove, out int vMove, out bool sprint)
+    public override void ControlCar(out int hMove, out int vMove, out bool sprint, out bool stop)
     {
+        stop = false;
         _needForSpeed = Mathf.Clamp(_needForSpeed - (2 * (_car.HSpeed - _car.DefaultSpeed) / (_car.WalkMaxSpeed - _car.DefaultSpeed) - 1) * Time.fixedDeltaTime / _timeToFillNeedForSpeed, 0f, 1f);
         if (_speedUpText)
         {

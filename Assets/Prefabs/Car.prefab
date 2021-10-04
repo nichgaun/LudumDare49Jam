@@ -52,9 +52,9 @@ MonoBehaviour:
   _brakeMinSpeed: 4
   _brakeDeceleration: 80
   _naturalDeceleration: 30
-  _walkMaxSpeed: 30
-  _walkAcceleration: 30
-  _sprintMaxSpeed: 70
+  _walkMaxSpeed: 50
+  _walkAcceleration: 60
+  _sprintMaxSpeed: 90
   _sprintMaxAcceleration: 120
   _decelerationDuringShift: 6
   _strafeSpeed: 20
