@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Rage : MonoBehaviour
 {
     [SerializeField] float rageMax; //set in editor
-    [SerializeField] Text rageText; // set in editor
     float currentRage;
+    public float CurrentRage { get { return currentRage; } }
 
     Dictionary<string, float> rageMultipliers;
 
@@ -15,7 +14,6 @@ public class Rage : MonoBehaviour
     void Start()
     {
         currentRage = 0;
-        rageText.text = "Rage: " + currentRage + "/" + rageMax;
         rageMultipliers = new Dictionary<string, float>();
     }
 
@@ -33,7 +31,6 @@ public class Rage : MonoBehaviour
         else if (currentRage > rageMax){
             currentRage = rageMax;
         }
-        rageText.text = "Rage: " + currentRage + "/" + rageMax;
     }
 
     public void SetMultiplier(string key, float multiplier)
