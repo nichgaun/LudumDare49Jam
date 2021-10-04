@@ -7,14 +7,14 @@ public class PlayerDriver : Driver
     [SerializeField] private float _rageBuildRate;
     [SerializeField] private float _timeToFillNeedForSpeed;
     [SerializeField] bool hasRage;
-    private GameObject _speedUpText;
+    private Blink _speedUpText;
     private float _needForSpeed;
 
     public override void Claim(Car car)
     {
         _car = car;
         _rage = car.GetComponent<Rage>();
-        _speedUpText = GameObject.FindGameObjectWithTag(TagName.SpeedUp);
+        _speedUpText = GameObject.FindGameObjectWithTag(TagName.SpeedUp).GetComponent<Blink>();
     }
 
     public override void ControlCar(out int hMove, out int vMove, out bool sprint)
@@ -22,18 +22,22 @@ public class PlayerDriver : Driver
         _needForSpeed = Mathf.Clamp(_needForSpeed - (2 * (_car.HSpeed - _car.DefaultSpeed) / (_car.WalkMaxSpeed - _car.DefaultSpeed) - 1) * Time.fixedDeltaTime / _timeToFillNeedForSpeed, 0f, 1f);
         if (_speedUpText)
         {
-            _speedUpText.SetActive(_needForSpeed > 0.8f);
+            if (_needForSpeed > 0.95f)
+            {
+                if (!_speedUpText.isActiveAndEnabled)
+                {
+                    _speedUpText.BlinkTime = 0;
+                }
+                _speedUpText.gameObject.SetActive(true);
+            }
+            else
+            {
+                _speedUpText.gameObject.SetActive(false);
+            }
         }
         if (_needForSpeed > 1 - 1e-3f)
         {
             if (hasRage) _rage.UpdateRage(_rageBuildRate * Time.fixedDeltaTime);        
-        }
-        else
-        {
-            if (_speedUpText)
-            {
-                _speedUpText.SetActive(false);
-            }
         }
         hMove = 0;
         vMove = 0;
