@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class SpawnThings : MonoBehaviour
 {
-    [SerializeField] List<GameObject> thingsToSpawn; //set in editor
     [SerializeField] float spawnInterval; //set in editor
-    [SerializeField] List<Vector3> spawnLocations;
+
+    [SerializeField] List<GameObject> thingsToSpawnInRoad; //set in editor
+    [SerializeField] List<GameObject> thingsToSpawnOffRoad; //set in editor
+
+    //spawn lanes
+    [SerializeField] List<Vector3> forwardSpawnLocations;
+    [SerializeField] List<Vector3> oncomingSpawnLocations;
+    [SerializeField] List<Vector3> offRoadSpawnLocations;
 
     [SerializeField] GameObject followedObject; //set via tag to player
-    [SerializeField] Vector3 offsetFromFollowed; //set in editor
+    [SerializeField] Vector3 offsetFromFollowed; //set in start
 
     float fixedZPos; //set in Start
     float fixedYPos; //set in start
@@ -41,22 +47,20 @@ public class SpawnThings : MonoBehaviour
         spawnTimer += Time.deltaTime;
         if (spawnTimer >= spawnInterval)
         {
-            SpawnNew();
+            SpawnNew(thingsToSpawnOffRoad, offRoadSpawnLocations);
+            SpawnNew(thingsToSpawnInRoad, forwardSpawnLocations);
+            SpawnNew(thingsToSpawnInRoad, oncomingSpawnLocations);
             spawnTimer = 0;
         }
     }
 
-    private void SpawnNew()
+    private void SpawnNew(List<GameObject> toSpawn, List<Vector3> locations)
     {
-        //randomly pick a point along the line given as the spawn location
-        Vector3 location = spawnLocations[Random.Range(0, spawnLocations.Count)];
-        location += transform.position;
-
-        if (thingsToSpawn.Count != 0)
+        if (toSpawn.Count != 0)
         {
-            //randomly select a thing in our list to spawn
-            int index = Random.Range(0, thingsToSpawn.Count);
-            Instantiate(thingsToSpawn[index], location, Quaternion.identity);
+            int index = Random.Range(0, toSpawn.Count);
+            int locationIndex = Random.Range(0, locations.Count);
+            Instantiate(toSpawn[index], transform.position + locations[locationIndex], Quaternion.identity);
         }
     }
 }
