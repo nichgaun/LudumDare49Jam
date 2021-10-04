@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a995d33a9c079194a81871e4e341c50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnInterval: 5
   thingsToSpawnInRoad:
   - {fileID: 4106432698967655635, guid: 1e1c56b8a1ec6424aa4b91a4def9ddea, type: 3}
   - {fileID: 4106432698967655635, guid: 4677820d04374c1489811c563cc75025, type: 3}
@@ -51,10 +52,11 @@ MonoBehaviour:
   - {fileID: 1370845632242064967, guid: fe5151bed53f51c45977be31b98fa58e, type: 3}
   - {fileID: 5457890025164535235, guid: c8a17e43d27a3ee43917240730bb1b06, type: 3}
   - {fileID: 5252448111436935814, guid: e92f6501cf1f6e541ba37f13a73d907b, type: 3}
+  roadWeights: []
   thingsToSpawnOffRoad:
   - {fileID: 8955414892688085042, guid: de710c1c51aab7248bb525152364e75a, type: 3}
   - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
-  spawnInterval: 1
+  offRoadWeights: []
   forwardSpawnLocations:
   - {x: 0, y: 0, z: -1.2}
   - {x: 0, y: 0, z: -3.4}
