@@ -27,6 +27,8 @@ public class BarricadeComponent : MonoBehaviour
             return;
         }
 
+        GetComponent<CollidableObstacle>().dead = true;
+
         // determine relative positioning
         int _flyawayDirection;
         if (other.gameObject.transform.position.z < gameObject.transform.position.z) {
