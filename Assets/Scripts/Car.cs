@@ -35,6 +35,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float _bouncePitchSpeed;
     [SerializeField] private float _breakMagnitude;
     [SerializeField] private bool _breakable;
+    [SerializeField] private bool _inMainMenu;
     private float _hSpeed;
     private float _vSpeed;
     private float _fallSpeed;
@@ -72,6 +73,8 @@ public class Car : MonoBehaviour
     {
         // Get car input from player or AI controller
         _driver.ControlCar(out int hMove, out int vMove, out bool sprint);
+        hMove *= directionMultiplier;
+        vMove *= directionMultiplier;
 
         // Handle shifting using a simplified system with only two gears, one that is "too high" and unable to provide optimal acceleration and one that is lower and has more acceleration
         // The lower gear is your sprint state, but takes a second to shift to, giving a lurching feeling
@@ -212,7 +215,12 @@ public class Car : MonoBehaviour
         }
 
         // Apply velocity
-        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime * directionMultiplier, transform.position.y + _fallSpeed * Time.fixedDeltaTime, transform.position.z + _vSpeed * Time.fixedDeltaTime * directionMultiplier);
+        var zNext = transform.position.z + _vSpeed * Time.fixedDeltaTime * directionMultiplier;
+        if (!_inMainMenu)
+        {
+            zNext = Mathf.Clamp(zNext, -10f, 10f);
+        }
+        transform.position = new Vector3(transform.position.x + _hSpeed * Time.fixedDeltaTime * directionMultiplier, transform.position.y + _fallSpeed * Time.fixedDeltaTime, zNext);
         _pitch = ShiftMod(_pitch + _pitchSpeed * Time.fixedDeltaTime, 360);
         _yaw = ShiftMod(_yaw + _yawSpeed * Time.fixedDeltaTime, 360);
         _roll = ShiftMod(_roll + _rollSpeed * Time.fixedDeltaTime, 360);
@@ -242,7 +250,7 @@ public class Car : MonoBehaviour
         emitParams.applyShapeToPosition = true;
         ps.Emit(emitParams, 20);
     }
-
+    
     public void ReverseDir(){
         directionMultiplier *= -1;
     }

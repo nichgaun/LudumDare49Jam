@@ -6,6 +6,7 @@ public class CleanUp : MonoBehaviour
     float _lastX;
     float _alive;
     Car _player;
+    [SerializeField] private bool _inMainMenu;
 
     void Awake()
     {
@@ -15,7 +16,7 @@ public class CleanUp : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Time.fixedDeltaTime > 1e-12)
+        if (Time.fixedDeltaTime > 1e-12 && !_inMainMenu)
         {
             _avgVel = Mathf.Lerp((transform.position.x - _lastX) / Time.fixedDeltaTime - _player.HSpeed, _avgVel, Mathf.Pow(1f - 0.25f, Time.fixedDeltaTime));
             _lastX = transform.position.x;
