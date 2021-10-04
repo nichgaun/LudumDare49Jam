@@ -352,6 +352,11 @@ public class Car : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         OnTriggerEnterOrStay(other);
+
+        if (other.gameObject.CompareTag(TagName.Player))
+        {
+            SoundPlayer.Play("hitBarricade");
+        }
     }
 
     void OnTriggerStay(Collider other)
