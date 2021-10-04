@@ -46,6 +46,8 @@ public class Car : MonoBehaviour
     public float VSpeed { get { return _vSpeed; } }
     public float FallSpeed { get { return _fallSpeed; } }
     public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
+    public float SprintMaxSpeed { get { return _sprintMaxSpeed; } }
+    public float WalkMaxSpeed { get { return _walkMaxSpeed; } }
     private int directionMultiplier = 1;
     private float _pitch;
     private float _pitchSpeed;
@@ -245,6 +247,7 @@ public class Car : MonoBehaviour
     void OnTriggerEnterOrStay(Collider other)
     {
         var otherCar = other.gameObject.GetComponent<Car>();
+
         if (otherCar)
         {
             Physics.ComputePenetration(_collider, _collider.transform.position, _collider.transform.rotation, other, other.transform.position, other.transform.rotation, out Vector3 direction, out float distance);

@@ -10,6 +10,7 @@ static class TagName {
     public static System.String Player = "Player";
     public static System.String UIBananaCount = "UIBananaCount";
     public static System.String ParticleSystem = "ParticleSystem";
+    public static System.String SpeedUp = "SpeedUp";
 }
 
 static class UniversalConstants {
