@@ -893,6 +893,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9042770060136716722, guid: 6083453dbc549924197feb5cf92097e5, type: 3}
+      propertyPath: m_TagString
+      value: RadioText
+      objectReference: {fileID: 0}
     - target: {fileID: 9042770060203352018, guid: 6083453dbc549924197feb5cf92097e5, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -729.8

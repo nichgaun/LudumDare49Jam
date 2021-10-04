@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9042770060136716720}
   m_Layer: 5
   m_Name: RadioText
-  m_TagString: Radio
+  m_TagString: RadioText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
