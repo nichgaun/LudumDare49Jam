@@ -50,7 +50,8 @@ MonoBehaviour:
   _driver: {fileID: 0}
   _defaultSpeed: 12
   _brakeMinSpeed: 4
-  _brakeDeceleration: 40
+  _brakeDeceleration: 80
+  _naturalDeceleration: 30
   _walkMaxSpeed: 30
   _walkAcceleration: 30
   _sprintMaxSpeed: 70
@@ -71,6 +72,7 @@ MonoBehaviour:
   _bouncePitchSpeed: 60
   _breakMagnitude: 2200
   _breakable: 0
+  _inMainMenu: 0
   _yawLerpAmount: 0.1
 --- !u!23 &6070577121974920535
 MeshRenderer:

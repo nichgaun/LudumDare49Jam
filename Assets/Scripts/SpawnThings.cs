@@ -4,31 +4,25 @@ using UnityEngine;
 
 public class SpawnThings : MonoBehaviour
 {
-    [SerializeField] float spawnInterval; //set in editor
 
-    [SerializeField] List<GameObject> thingsToSpawnInRoad; //set in editor
-    [SerializeField] List<float> roadWeights; //set in editor
-    [SerializeField] List<GameObject> thingsToSpawnOffRoad; //set in editor
-    [SerializeField] List<float> offRoadWeights; //set in editor
+    [SerializeField] List<Zone> zones;
+    [SerializeField] int zoneIndex;
 
-    //spawn lanes
+    [SerializeField] List<Vector3> offRoadSpawnLocations;
     [SerializeField] List<Vector3> forwardSpawnLocations;
     [SerializeField] List<Vector3> oncomingSpawnLocations;
-    [SerializeField] List<Vector3> offRoadSpawnLocations;
-
     [SerializeField] GameObject followedObject; //set via tag to player
     [SerializeField] Vector3 offsetFromFollowed; //set in start
 
     float fixedZPos; //set in Start
     float fixedYPos; //set in start
 
-    float distanceTraveled;
+    float onRoadDistanceTraveled;
+    float offRoadDistanceTraveled;
     Vector3 lastPosition;
 
     private void Start()
     {
-        distanceTraveled = 0;
-
         if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag(TagName.Player);
         
         offsetFromFollowed = transform.position - followedObject.transform.position;
@@ -48,48 +42,21 @@ public class SpawnThings : MonoBehaviour
         tmp.y = fixedYPos;
         transform.position = tmp;
 
-        distanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
-        if (distanceTraveled >= spawnInterval)
+        onRoadDistanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
+        offRoadDistanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
+        var zone = zones[zoneIndex];
+        if (onRoadDistanceTraveled >= zone.onRoadSpawnInterval)
         {
-            SpawnNew(thingsToSpawnOffRoad, offRoadWeights, offRoadSpawnLocations, false);
-            SpawnNew(thingsToSpawnInRoad, roadWeights, forwardSpawnLocations, false);
-            SpawnNew(thingsToSpawnInRoad, roadWeights, oncomingSpawnLocations, true);
-            distanceTraveled = 0;
+            zone.SpawnNew(zone.thingsToSpawnInRoad, zone.roadWeights, forwardSpawnLocations, false);
+            zone.SpawnNew(zone.thingsToSpawnInRoad, zone.roadWeights, oncomingSpawnLocations, true);
+            onRoadDistanceTraveled = 0;
+        }
+        if (offRoadDistanceTraveled >= zone.offRoadSpawnInterval)
+        {
+            zone.SpawnNew(zone.thingsToSpawnOffRoad, zone.offRoadWeights, offRoadSpawnLocations, false);
+            offRoadDistanceTraveled = 0;
         }
 
         lastPosition = transform.position;
-    }
-
-    private void SpawnNew(List<GameObject> toSpawn, List<float> weights, List<Vector3> locations, bool oncoming)
-    {
-        if (toSpawn.Count != 0)
-        {
-            float sum = 0;
-            foreach (var w in weights)
-            {
-                sum += w;
-            }
-            float choice = Random.Range(0, sum);
-            int index = 0;
-            foreach (var w in weights)
-            {
-                choice -= w;
-                if (choice < 0)
-                {
-                    break;
-                }
-                index += 1;
-            }
-            int locationIndex = Random.Range(0, locations.Count);
-            var o = Instantiate(toSpawn[index], transform.position + locations[locationIndex], Quaternion.identity);
-            if (oncoming)
-            {
-                var car = o.GetComponent<Car>();
-                if (car)
-                {
-                    car.ReverseDir();
-                }
-            }
-        }
     }
 }

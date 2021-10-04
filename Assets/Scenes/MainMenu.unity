@@ -194,10 +194,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HouseBlue (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 7493502539732044415, guid: f6924cd6e20377c4b8206cc62cba55fc, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6924cd6e20377c4b8206cc62cba55fc, type: 3}
 --- !u!1 &43446234
@@ -4944,38 +4940,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6946953578596659649, guid: c8a17e43d27a3ee43917240730bb1b06, type: 3}
   m_PrefabInstance: {fileID: 1987621595}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2030720048 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5546766045475813947, guid: f6924cd6e20377c4b8206cc62cba55fc, type: 3}
-  m_PrefabInstance: {fileID: 10642409}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2030720050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030720048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 748edcad4dbdece469e330d4468fb66e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _inertia: 10
-  dead: 0
---- !u!114 &2030720051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2030720048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4738bffce2b5a80489940694fb026c41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collidingTumbleSpeed: 41
 --- !u!1 &2076901072
 GameObject:
   m_ObjectHideFlags: 0

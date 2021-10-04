@@ -15,6 +15,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float _defaultSpeed;
     [SerializeField] private float _brakeMinSpeed;
     [SerializeField] private float _brakeDeceleration;
+    [SerializeField] private float _naturalDeceleration;
     [SerializeField] private float _walkMaxSpeed;
     [SerializeField] private float _walkAcceleration;
     [SerializeField] private float _sprintMaxSpeed;
@@ -126,7 +127,7 @@ public class Car : MonoBehaviour
         else if (hMove == -1)
         {
             // Brake
-            var acc = -_brakeDeceleration;
+            var acc = cruising ? -_naturalDeceleration : -_brakeDeceleration;
             VisualAcceleration += acc;
             _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
         }

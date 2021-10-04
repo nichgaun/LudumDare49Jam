@@ -14,7 +14,11 @@ public class PlayerDriver : Driver
     {
         _car = car;
         _rage = car.GetComponent<Rage>();
-        _speedUpText = GameObject.FindGameObjectWithTag(TagName.SpeedUp).GetComponent<Blink>();
+        var obj = GameObject.FindGameObjectWithTag(TagName.SpeedUp);
+        if (obj)
+        {
+            _speedUpText = obj.GetComponent<Blink>();
+        }
     }
 
     public override void ControlCar(out int hMove, out int vMove, out bool sprint)
