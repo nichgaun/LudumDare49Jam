@@ -46,6 +46,8 @@ public class Car : MonoBehaviour
     public float VSpeed { get { return _vSpeed; } }
     public float FallSpeed { get { return _fallSpeed; } }
     public float DefaultSpeed { get { return _defaultSpeed; } set { _defaultSpeed = value; } }
+    public float SprintMaxSpeed { get { return _sprintMaxSpeed; } }
+    public float WalkMaxSpeed { get { return _walkMaxSpeed; } }
     private float _pitch;
     private float _pitchSpeed;
     private float _yaw;
