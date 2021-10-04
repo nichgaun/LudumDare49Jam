@@ -53,7 +53,22 @@ public class NonPlayerDriver : Driver
                 }
                 if (_vMoving == 0)
                 {
-                    _vMoving = Random.Range(0, 2) * 2 - 1;
+                    if (_leftCollider.OutOfBounds && !_rightCollider.OutOfBounds)
+                    {
+                        _vMoving = -1;
+                    }
+                    else if (!_leftCollider.OutOfBounds && _rightCollider.OutOfBounds)
+                    {
+                        _vMoving = 1;
+                    }
+                    else
+                    {
+                        _vMoving = Random.Range(0, 2) * 2 - 1;
+                    }
+                }
+                if (_car.DirectionMultiplier * transform.position.z > 0)
+                {
+                    _vMoving = -(int)_car.DirectionMultiplier;
                 }
             }
             else

@@ -27,7 +27,7 @@ public class Car : MonoBehaviour
     [SerializeField] private float _knockAsideThreshold;
     [SerializeField] private float _knockAsideForce;
     [SerializeField] private float _gravity;
-    [SerializeField] private GameObject _modelObject;
+    public GameObject _modelObject;
     [SerializeField] private float _flipSpeed;
     [SerializeField] private float _jumpSpeed;
     [SerializeField] private float _bounceThreshold;
@@ -59,6 +59,7 @@ public class Car : MonoBehaviour
     private bool _wasRamping;
     private bool _stillRamping;
     [SerializeField] private float _yawLerpAmount;
+    public float DirectionMultiplier { get { return directionMultiplier; } }
 
     private void Awake()
     {

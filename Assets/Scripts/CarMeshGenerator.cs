@@ -142,8 +142,10 @@ public class CarMeshGenerator : MonoBehaviour
         Color.white
     };
 
-    public void GenerateCar () {
+    public void GenerateCar ()
+    {
         GameObject car = new GameObject("Car");
+        GameObject carcar = new GameObject("CarCar");
         MeshRenderer meshRenderer = car.AddComponent<MeshRenderer>();
         Material body = new Material(Shader.Find("Standard")), window = new Material(Shader.Find("Standard"));
         window.color = Color.blue;
@@ -184,7 +186,6 @@ public class CarMeshGenerator : MonoBehaviour
             new Vector3(width, height, 0), //6
             new Vector3(width, 0, 0) //7
         };
-
         mesh.vertices = vertices;
 
         List<int> quads = new List<int>();
@@ -213,14 +214,19 @@ public class CarMeshGenerator : MonoBehaviour
             w.transform.rotation = new Quaternion(0, 180*(-k), 0, 0);
         }
 
-        car.transform.parent = gameObject.transform;
+        car.transform.parent = carcar.transform;
+        carcar.transform.parent = gameObject.transform;
         // var v = car.transform.position;
         // v.y = tireSize/10;
-        car.transform.localPosition = new Vector3 (0f, tireSize/10, 0f);
+        car.transform.localPosition = new Vector3(-width, tireSize / 10, -depth / 2);
 
-        var collider = gameObject.GetComponent<BoxCollider>();
+        var collider = gameObject.GetComponentInParent<BoxCollider>();
+        car.transform.position -= new Vector3(-width + depth / 2, 0, depth / 2 - width);
         collider.size = new Vector3(width, tireSize/10+height+cabinHeight, depth);
-        collider.center = new Vector3(width/2, (tireSize/10+height+cabinHeight)/2, depth/2);
+        collider.center = new Vector3(-width/2, (tireSize/10+height+cabinHeight)/2, 0);
+        carcar.transform.localPosition = new Vector3(-car.transform.localPosition.z, 0, 0);
+        GetComponent<Car>()._modelObject = carcar;
+        car.transform.localEulerAngles = new Vector3(0, 90, 0);
 
         // return car;
     }
