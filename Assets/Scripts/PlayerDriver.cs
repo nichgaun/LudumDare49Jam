@@ -15,6 +15,7 @@ public class PlayerDriver : Driver
     {
         _car = car;
         _rage = car.GetComponent<Rage>();
+        _playerDeath = car.GetComponent<PlayerDeath>();
         var obj = GameObject.FindGameObjectWithTag(TagName.SpeedUp);
         if (obj)
         {
@@ -73,5 +74,11 @@ public class PlayerDriver : Driver
             hMove += 1;
         }
         sprint = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+
+        if (_playerDeath.IsDead)
+        {
+            stop = true;
+            hMove = -1;
+        }
     }
 }

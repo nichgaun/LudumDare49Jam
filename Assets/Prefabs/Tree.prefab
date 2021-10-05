@@ -45,6 +45,8 @@ GameObject:
   - component: {fileID: -4798567817791967417}
   - component: {fileID: 4156389300358603620}
   - component: {fileID: -5314879397610002072}
+  - component: {fileID: -3794854769481475161}
+  - component: {fileID: -8611381252260837646}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Untagged
@@ -137,6 +139,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inMainMenu: 0
+--- !u!114 &-3794854769481475161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702366545532387713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 376f175a276d2174f84926ebdc5b406f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+--- !u!114 &-8611381252260837646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702366545532387713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7762669f0cdb0249a70c73793c14e4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rageDelta: -1
 --- !u!1001 &8969989244031112970
 PrefabInstance:
   m_ObjectHideFlags: 0
