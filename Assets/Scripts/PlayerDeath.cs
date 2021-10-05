@@ -30,7 +30,7 @@ public class PlayerDeath : MonoBehaviour
         text.enabled = true;
         GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<Car>().Emit();
         yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("MainMenu");
     }
 
     void OnDestroy(){
