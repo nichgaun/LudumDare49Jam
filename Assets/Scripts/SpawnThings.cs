@@ -20,6 +20,7 @@ public class SpawnThings : MonoBehaviour
     float onRoadDistanceTraveled;
     float offRoadDistanceTraveled;
     Vector3 lastPosition;
+    float zoneTime;
 
     private void Start()
     {
@@ -42,8 +43,10 @@ public class SpawnThings : MonoBehaviour
         tmp.y = fixedYPos;
         transform.position = tmp;
 
-        onRoadDistanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
-        offRoadDistanceTraveled += Mathf.Abs((transform.position - lastPosition).magnitude);
+        var dist = (transform.position - lastPosition).magnitude;
+        onRoadDistanceTraveled += dist;
+        offRoadDistanceTraveled += dist;
+        zoneTime += dist;
         var zone = zones[zoneIndex];
         if (onRoadDistanceTraveled >= zone.onRoadSpawnInterval)
         {
@@ -55,6 +58,11 @@ public class SpawnThings : MonoBehaviour
         {
             zone.SpawnNew(zone.thingsToSpawnOffRoad, zone.offRoadWeights, offRoadSpawnLocations, false);
             offRoadDistanceTraveled = 0;
+        }
+        if (zoneTime > 600)
+        {
+            zoneIndex = (zoneIndex + 1 + Random.Range(0, zones.Count)) % zones.Count;
+            zoneTime = 0;
         }
 
         lastPosition = transform.position;
