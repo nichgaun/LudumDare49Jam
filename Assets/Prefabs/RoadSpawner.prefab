@@ -45,4 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _road: {fileID: 3136457331766079634, guid: 3210af437a3bd3049b9dca99515a3179, type: 3}
   _wall: {fileID: 6897328457937650089, guid: 7ffc88ceca1c8a84da05b4b162d24d88, type: 3}
+  _grass: {fileID: 3136457331766079634, guid: f390c946c31d0f6478426ec0bb770e03, type: 3}
+  _building: {fileID: 7730243561397926284, guid: 2d87845730bb66a49bde41de2c26da1c, type: 3}
   _lead: 800

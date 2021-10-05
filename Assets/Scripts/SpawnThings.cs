@@ -24,6 +24,7 @@ public class SpawnThings : MonoBehaviour
 
     private void Start()
     {
+        zoneIndex = Random.Range(0, zones.Count);
         if (followedObject == null) followedObject = GameObject.FindGameObjectWithTag(TagName.Player);
         
         offsetFromFollowed = transform.position - followedObject.transform.position;
@@ -59,7 +60,7 @@ public class SpawnThings : MonoBehaviour
             zone.SpawnNew(zone.thingsToSpawnOffRoad, zone.offRoadWeights, offRoadSpawnLocations, false);
             offRoadDistanceTraveled = 0;
         }
-        if (zoneTime > 600)
+        if (zoneTime > 800)
         {
             zoneIndex = (zoneIndex + 1 + Random.Range(0, zones.Count)) % zones.Count;
             zoneTime = 0;

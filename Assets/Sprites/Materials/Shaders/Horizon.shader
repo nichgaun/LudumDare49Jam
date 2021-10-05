@@ -74,7 +74,7 @@ Shader "Custom/Horizon"
           if (uv.y > 0 && uv.y < 1) {
             col = tex2D(_RoadTex, uv) * 1.2f;
           } else {
-            col = tex2D(_GrassTex, uv);
+            col = tex2D(_GrassTex, uv) * 1.2f;
           }
         } else {
           fixed2 skyPos = fixed2(i.viewT.x, -i.viewT.y);
