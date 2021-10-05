@@ -73,7 +73,7 @@ public class Car : MonoBehaviour
     void FixedUpdate()
     {
         // Get car input from player or AI controller
-        _driver.ControlCar(out int hMove, out int vMove, out bool sprint);
+        _driver.ControlCar(out int hMove, out int vMove, out bool sprint, out bool stop);
         hMove *= directionMultiplier;
         vMove *= directionMultiplier;
 
@@ -129,7 +129,7 @@ public class Car : MonoBehaviour
             // Brake
             var acc = cruising ? -_naturalDeceleration : -_brakeDeceleration;
             VisualAcceleration += acc;
-            _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, _brakeMinSpeed);
+            _hSpeed = Mathf.Max(_hSpeed + acc * Time.fixedDeltaTime, stop ? 0 : _brakeMinSpeed);
         }
         var groundHeight = _rampY;
         if (transform.position.y > groundHeight)
@@ -165,6 +165,15 @@ public class Car : MonoBehaviour
             }
             _pitch = 0;
             _roll = 0;
+        }
+
+        // Grass
+        if (!_inMainMenu)
+        {
+            if (transform.position.z > 20)
+            {
+                _hSpeed *= _hSpeed * Mathf.Pow(0.5f, Time.fixedDeltaTime);
+            }
         }
 
         // Strafing

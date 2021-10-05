@@ -23,7 +23,7 @@ public class NonPlayerDriver : Driver
         _rightCollider.Claim(car);
     }
 
-    public override void ControlCar(out int hMove, out int vMove, out bool sprint)
+    public override void ControlCar(out int hMove, out int vMove, out bool sprint, out bool stop)
     {
         if (_tailgating)
         {
@@ -32,11 +32,13 @@ public class NonPlayerDriver : Driver
             hMove = (int)Mathf.Sign(diff.x - 0.25f * _car.HSpeed);
             vMove = (int)Mathf.Sign(diff.z);
             sprint = false;
+            stop = false;
         }
         else
         {
             hMove = 0;
             sprint = false;
+            stop = false;
             if (_centerCollider.StillDanger)
             {
                 if (_leftCollider.StillDanger && !_rightCollider.StillDanger)
@@ -50,6 +52,7 @@ public class NonPlayerDriver : Driver
                 else if (_leftCollider.StillDanger && _rightCollider.StillDanger)
                 {
                     hMove = -1;
+                    stop = true;
                 }
                 if (_vMoving == 0)
                 {
@@ -75,7 +78,7 @@ public class NonPlayerDriver : Driver
             {
                 _vMoving = 0;
             }
-            vMove = _vMoving;
+            vMove = stop ? 0 : _vMoving;
         }
         _leftCollider.ControlCar();
         _centerCollider.ControlCar();
