@@ -9,6 +9,7 @@ TagManager:
   - SpeedUp
   - Radio
   - RadioText
+  - GameOver
   layers:
   - Default
   - TransparentFX
