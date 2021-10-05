@@ -19,6 +19,7 @@ public class Radio : MonoBehaviour
     float goalTimeScale;
 
     Rage playerRage; //set in start
+    Car playerCar; //set in start
     Health playerHealth; //set in start
 
     Text radioText; //set in start
@@ -32,6 +33,7 @@ public class Radio : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerRage = player.GetComponent<Rage>();
         playerHealth = player.GetComponent<Health>();
+        playerCar = player.GetComponent<Car>();
 
         radioText = GameObject.FindGameObjectWithTag("RadioText").GetComponent<Text>();
     }

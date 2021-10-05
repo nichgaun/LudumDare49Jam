@@ -61,6 +61,7 @@ public class Car : MonoBehaviour
     private bool _wasRamping;
     private bool _stillRamping;
     private float _timeOnGrass;
+    public bool CanSprint;
     [SerializeField] private float _yawLerpAmount;
     public float DirectionMultiplier { get { return directionMultiplier; } }
 
@@ -69,6 +70,7 @@ public class Car : MonoBehaviour
         _collider = GetComponent<Collider>();
         _hSpeed = _defaultSpeed;
         _driver.Claim(this);
+        CanSprint = false;
     }
 
     void FixedUpdate()
@@ -80,7 +82,7 @@ public class Car : MonoBehaviour
 
         // Handle shifting using a simplified system with only two gears, one that is "too high" and unable to provide optimal acceleration and one that is lower and has more acceleration
         // The lower gear is your sprint state, but takes a second to shift to, giving a lurching feeling
-        if (sprint) {
+        if (sprint && CanSprint) {
             if (_downshiftCoroutine == null)
             {
                 _downshiftCoroutine = StartCoroutine(Downshift());
