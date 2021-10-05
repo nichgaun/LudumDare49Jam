@@ -1,9 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Radio : MonoBehaviour
 {
+    const string TRACK1 = "number1";
+    const string TRACK2 = "number2";
+    const string TRACK3 = "number3";
+    const string TRACK4 = "number4";
+    const string BASE_RADIO_TEXT = "Now Playing: ";
+
     [SerializeField] int numSongs; //set in editor
 
     int currentSong;
@@ -14,6 +21,8 @@ public class Radio : MonoBehaviour
     Rage playerRage; //set in start
     Health playerHealth; //set in start
 
+    Text radioText; //set in start
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +32,8 @@ public class Radio : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         playerRage = player.GetComponent<Rage>();
         playerHealth = player.GetComponent<Health>();
+
+        radioText = GameObject.FindGameObjectWithTag("RadioText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -50,9 +61,9 @@ public class Radio : MonoBehaviour
         {
             case 0:
                 //all music off
-                SoundPlayer.Stop("number1");
-                SoundPlayer.Stop("number2");
-                SoundPlayer.Stop("number3");
+                SoundPlayer.Stop(TRACK1);
+                SoundPlayer.Stop(TRACK2);
+                SoundPlayer.Stop(TRACK3);
 
                 //reset radio rage
                 playerRage?.SetMultiplier("radioRage", 1f);
@@ -62,12 +73,14 @@ public class Radio : MonoBehaviour
 
                 //reset time scale
                 goalTimeScale = 1f;
+
+                radioText.text = BASE_RADIO_TEXT + "---";
                 break;
             case 1:
                 //select song 1
-                SoundPlayer.Stop("number2");
-                SoundPlayer.Stop("number3");
-                SoundPlayer.Play("number1", true, false);
+                SoundPlayer.Stop(TRACK2);
+                SoundPlayer.Stop(TRACK3);
+                SoundPlayer.Play(TRACK1, true, false);
 
                 //set radio rage
                 playerRage?.SetMultiplier("radioRage", 3f);
@@ -77,12 +90,14 @@ public class Radio : MonoBehaviour
 
                 //reset time scale
                 goalTimeScale = 1f;
+
+                radioText.text = BASE_RADIO_TEXT + "Track 1";
                 break;
             case 2:
                 //select song 2
-                SoundPlayer.Stop("number1");
-                SoundPlayer.Stop("number3");
-                SoundPlayer.Play("number2", true, false);
+                SoundPlayer.Stop(TRACK1);
+                SoundPlayer.Stop(TRACK3);
+                SoundPlayer.Play(TRACK2, true, false);
 
                 //reset radio rage
                 playerRage?.SetMultiplier("radioRage", 1f);
@@ -92,12 +107,14 @@ public class Radio : MonoBehaviour
 
                 //reset time scale
                 goalTimeScale = 1f;
+
+                radioText.text = BASE_RADIO_TEXT + "Track 2";
                 break;
             case 3:
                 //select song 3
-                SoundPlayer.Stop("number1");
-                SoundPlayer.Stop("number2");
-                SoundPlayer.Play("number3", true, false);
+                SoundPlayer.Stop(TRACK1);
+                SoundPlayer.Stop(TRACK2);
+                SoundPlayer.Play(TRACK3, true, false);
 
                 //reset radio rage
                 playerRage?.SetMultiplier("radioRage", 1f);
@@ -107,6 +124,8 @@ public class Radio : MonoBehaviour
 
                 //set time scale to  s l o w
                 goalTimeScale = 0.2f;
+
+                radioText.text = BASE_RADIO_TEXT + "Track 3";
                 break;
             default:
                 break;
