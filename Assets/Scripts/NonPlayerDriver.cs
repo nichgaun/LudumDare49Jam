@@ -54,17 +54,17 @@ public class NonPlayerDriver : Driver
                     hMove = -1;
                     stop = true;
                 }
-                if (_vMoving == 0)
+                if (_leftCollider.OutOfBounds && !_rightCollider.OutOfBounds)
                 {
-                    if (_leftCollider.OutOfBounds && !_rightCollider.OutOfBounds)
-                    {
-                        _vMoving = -1;
-                    }
-                    else if (!_leftCollider.OutOfBounds && _rightCollider.OutOfBounds)
-                    {
-                        _vMoving = 1;
-                    }
-                    else
+                    _vMoving = -1;
+                }
+                else if (!_leftCollider.OutOfBounds && _rightCollider.OutOfBounds)
+                {
+                    _vMoving = 1;
+                }
+                else
+                {
+                    if (_vMoving == 0)
                     {
                         _vMoving = Random.Range(0, 2) * 2 - 1;
                     }

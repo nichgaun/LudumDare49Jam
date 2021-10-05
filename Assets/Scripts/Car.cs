@@ -120,7 +120,7 @@ public class Car : MonoBehaviour
             }
             else if (_gearShiftState == GearShiftState.DOWNSHIFTED)
             {
-                var acc = Mathf.Max(_defaultSpeed, _hSpeed) / _sprintMaxSpeed * _sprintMaxAcceleration;
+                var acc = Mathf.Max(_walkMaxSpeed, _hSpeed) / _sprintMaxSpeed * _sprintMaxAcceleration;
                 Debug.Log(acc);
                 VisualAcceleration += acc;
                 _hSpeed = Mathf.Min(_hSpeed + acc * Time.fixedDeltaTime, _sprintMaxSpeed);
