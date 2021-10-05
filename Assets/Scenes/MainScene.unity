@@ -712,6 +712,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 837209974843736186, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: roadWeights.Array.data[1]
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4527691896628362197, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: roadWeights.Array.data[1]
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809889564864118533, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: roadWeights.Array.data[0]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809889564864118533, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: roadWeights.Array.data[1]
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809889564864118533, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: roadWeights.Array.data[2]
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809889564864118533, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
+      propertyPath: thingsToSpawnInRoad.Array.data[0]
+      value: 
+      objectReference: {fileID: 4106432698967655635, guid: 4677820d04374c1489811c563cc75025, type: 3}
     - target: {fileID: 6109733682024528101, guid: 94ab722c629344745a3c5b4f33269a64, type: 3}
       propertyPath: zoneIndex
       value: 0
