@@ -187,12 +187,14 @@ MonoBehaviour:
   - {fileID: 8702366545532387713, guid: b4c8307ac2f996b439ff83d1ea47fa09, type: 3}
   - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
   - {fileID: 5546766045475813947, guid: f6924cd6e20377c4b8206cc62cba55fc, type: 3}
+  - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
   roadWeights:
   - 10
   - 0.1
   - 10
   - 2
   - 0.5
+  - 5
   thingsToSpawnOffRoad:
   - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
   - {fileID: 8702366545532387713, guid: b4c8307ac2f996b439ff83d1ea47fa09, type: 3}
