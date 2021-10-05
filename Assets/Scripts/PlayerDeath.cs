@@ -29,7 +29,7 @@ public class PlayerDeath : MonoBehaviour
         text.text = "Your trip ends here!\nYour rank: " + ranks[Random.Range(0, ranks.Length)];
         text.enabled = true;
         GameObject.FindGameObjectWithTag(TagName.Player).GetComponent<Car>().Emit();
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
