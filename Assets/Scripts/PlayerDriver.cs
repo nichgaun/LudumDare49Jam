@@ -4,6 +4,7 @@ public class PlayerDriver : Driver
 {
     private Car _car;
     private Rage _rage;
+    private PlayerDeath _playerDeath;
     [SerializeField] private float _rageBuildRate;
     [SerializeField] private float _timeToFillNeedForSpeed;
     [SerializeField] bool hasRage;
