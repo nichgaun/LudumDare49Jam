@@ -108,18 +108,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05ce90b3b323c346bed7186b0ee441f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onRoadSpawnInterval: 10
+  onRoadSpawnInterval: 7
   offRoadSpawnInterval: 50
   thingsToSpawnInRoad:
   - {fileID: 4106432698967655635, guid: 1e1c56b8a1ec6424aa4b91a4def9ddea, type: 3}
   - {fileID: 4106432698967655635, guid: 4677820d04374c1489811c563cc75025, type: 3}
   - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
   - {fileID: 4424076721915950018, guid: d28f7ac5f40363c4784704ef4d12bbd7, type: 3}
+  - {fileID: 1370845632242064967, guid: dd426112afdcb4b47afcc5df8d029bbf, type: 3}
+  - {fileID: 769266740164674873, guid: dab41f3ef64b15d46a50052219d1436a, type: 3}
   roadWeights:
   - 0.01
   - 0.1
   - 0.1
   - 10
+  - 0.2
+  - 0.2
   thingsToSpawnOffRoad:
   - {fileID: 6566849017340265038, guid: 1659cd56075c01447899caf349bc8847, type: 3}
   - {fileID: 8702366545532387713, guid: b4c8307ac2f996b439ff83d1ea47fa09, type: 3}

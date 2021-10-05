@@ -24,7 +24,15 @@ public class PlayerDriver : Driver
     public override void ControlCar(out int hMove, out int vMove, out bool sprint, out bool stop)
     {
         stop = false;
-        _needForSpeed = Mathf.Clamp(_needForSpeed - (2 * (_car.HSpeed - _car.DefaultSpeed) / (_car.WalkMaxSpeed - _car.DefaultSpeed) - 1) * Time.fixedDeltaTime / _timeToFillNeedForSpeed, 0f, 1f);
+        var frac = 2 * (_car.HSpeed - _car.DefaultSpeed) / (_car.WalkMaxSpeed - _car.DefaultSpeed) - 1;
+        if (frac > 0.9f)
+        {
+            frac = (frac - 0.9f) / 0.1f;
+        } else
+        {
+            frac = (frac - 0.9f) / 0.9f;
+        }
+        _needForSpeed = Mathf.Clamp(_needForSpeed - frac * Time.fixedDeltaTime / _timeToFillNeedForSpeed, 0f, 1f);
         if (_speedUpText)
         {
             if (_needForSpeed > 0.95f)

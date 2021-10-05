@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rageBuildRate: 2.5
-  _timeToFillNeedForSpeed: 8
+  _timeToFillNeedForSpeed: 1
   hasRage: 1
