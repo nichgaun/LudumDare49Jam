@@ -11,7 +11,7 @@ public class CheckDamage : MonoBehaviour
         Health health = other.gameObject.GetComponent<Health>();
         if (health){
             health.Damage(damage);
-            Camera.main.transform.position += new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f));
+            // Camera.main.transform.position += new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f));
         }
     }
 }
