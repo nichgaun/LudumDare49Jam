@@ -41,13 +41,13 @@ public class Radio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
+        if (Input.GetKeyDown(KeyCode.X))
         {
             currentSong++;
             if (currentSong > numSongs) currentSong = numSongs;
             UpdateSongEffect();
         }
-        if (Input.GetKeyDown(KeyCode.N))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             currentSong--;
             if (currentSong < 0) currentSong = 0;
