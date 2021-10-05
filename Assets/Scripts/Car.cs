@@ -60,6 +60,7 @@ public class Car : MonoBehaviour
     private float _rampY;
     private bool _wasRamping;
     private bool _stillRamping;
+    private float _timeOnGrass;
     [SerializeField] private float _yawLerpAmount;
     public float DirectionMultiplier { get { return directionMultiplier; } }
 
@@ -120,6 +121,7 @@ public class Car : MonoBehaviour
             else if (_gearShiftState == GearShiftState.DOWNSHIFTED)
             {
                 var acc = Mathf.Max(_defaultSpeed, _hSpeed) / _sprintMaxSpeed * _sprintMaxAcceleration;
+                Debug.Log(acc);
                 VisualAcceleration += acc;
                 _hSpeed = Mathf.Min(_hSpeed + acc * Time.fixedDeltaTime, _sprintMaxSpeed);
             }
@@ -170,9 +172,16 @@ public class Car : MonoBehaviour
         // Grass
         if (!_inMainMenu)
         {
-            if (transform.position.z > 20)
+            if (Mathf.Abs(transform.position.z) > 19.5f && transform.position.y < 0.05f)
             {
-                _hSpeed *= _hSpeed * Mathf.Pow(0.5f, Time.fixedDeltaTime);
+                _timeOnGrass += Time.fixedDeltaTime;
+                if (_timeOnGrass > 1f)
+                {
+                    _hSpeed *= Mathf.Pow(0.1f, Time.fixedDeltaTime);
+                }
+            } else
+            {
+                _timeOnGrass = Mathf.Max(0f, _timeOnGrass - Time.fixedDeltaTime);
             }
         }
 
